@@ -1,0 +1,142 @@
+
+\section{点涡稳定性分析推导过程(P1 for AMM)}
+\subsection{控制方程}
+直角域附近点涡复速度方程
+\[
+f(z_{f}, \bar{z}_{f})=\frac{\mathrm{d}\bar{z}_{f}}{\mathrm{d}t}=\frac{\Gamma}{2\pi i}\left(\frac{1}{2z_{f}}-\frac{2z_{f}}{z_{f}^{2}-\bar{z}_{f}^{2}}\right)+2\lambda z_{f}
+\]
+\textcolor{red}{注释：复位势导数并不直接等于速度，而等于共轭复速度，这里存在一个物理和数学概念上的转化，因此是$z_{f}$的共轭在分子上}
+\subsection{对称性假设}
+点涡位于直角域的角平分线上拐角涡是稳定的，数学表达式为：
+\[
+z_{f}^{2}=-\bar{z}_{f}^{2}
+\]
+\subsection{静止条件}
+在稳定点$z_{f}=z_{f}^{*}$处的速度为零，数学表达式为：
+\[
+\left.\frac{\mathrm{d}\bar{z}_{f}}{\mathrm{d}t}\right|_{z_f = z_f^{*}}=0, \quad f(z_{f}^{*}, \bar{z}_{f}^{*})=0
+\]
+代入点涡复速度方程后得到平衡位置点涡坐标为
+\[
+\frac{\Gamma}{2\pi i}\left(\frac{1}{2z_{f}^{*}}-\frac{2z_{f}^{*}}{2z_{f}^{*2}}\right)+2\lambda z_{f}^{*}=0
+\]
+\[
+z_{f}^{*}=\left(\frac{i\Gamma}{8\pi \lambda}\right)^{\frac{1}{2}}
+\]
+\subsection{线性化复速度方程}
+分析点涡位置的稳定性，考虑点涡位置在扰动作用下的变化规律。
+设扰动后点涡位置为$z_{f}=z_{f}^{*}+\delta z_{f}$，其中$z_{f}^{*}$是点涡平衡位置，满足$f(z_{f}^{*}, \bar{z}_{f}^{*})=0$。
+
+在平衡点处进行一阶Taylor展开，将点涡复速度方程线性化
+\[
+\frac{\mathrm{d}(z_{f}^{*}+\delta z_{f})}{\mathrm{d}t}=f(z_{f}^{*}+\delta z_{f}, \bar{z_{f}^{*}}+\bar{\delta z_{f}})=\frac{\mathrm{d}z_{f}^{*}}{\mathrm{d}t}+\frac{\mathrm{d}\delta z_{f}}{\mathrm{d}t}
+\]
+等式右边第一项是平衡位置的速度，由于平衡位置为一个确定的常数，因此该项为0。
+\[
+\frac{\mathrm{d}\delta z_{f}}{\mathrm{d}t}=f(z_{f}^{*}+\delta z_{f}, \bar{z_{f}^{*}}+\bar{\delta z_{f}})
+=f(z_{f}^{*},\bar{z_{f}^{*}})+\left.\frac{\partial f}{\partial z_{f}}\right|_{z_{f}^{*}}\delta z_{f}+\left.\frac{\partial f}{\partial \bar{z_{f}}}\right|_{z_{f}^{*}}\delta \bar{z_{f}}+O(\delta z_{f}^{2})
+\]
+由静止条件，上式右侧第一项为0，线性化的方程为：
+\[
+\frac{\mathrm{d}\delta z_{f}}{\mathrm{d}t}\approx \left.\frac{\partial f}{\partial z_{f}}\right|_{z_{f}^{*}}\delta z_{f}+\left.\frac{\partial f}{\partial \bar{z_{f}}}\right|_{z_{f}^{*}}\delta \bar{z_{f}}=a\delta z_{f}+b\delta \bar{z_{f}}
+\]
+\textcolor{red}{由于原方程同时存在$\delta z_{f}, \delta \bar{z_{f}}$作为自变量，导致了非解析性，因为共轭量无法直接求导，自变量不仅与自身变化有关，还与共轭量相互作用(镜像涡)，共轭量与$\delta z_{f}$互相耦合，扰动$\delta z_{f}$产生的速度变化不仅与扰动本身有关，还与扰动的共轭量$\delta \bar{z_{f}}$，因此线性化必须保留共轭量}
+
+计算$a,b$的表达式：
+\[
+a=\frac{i\Gamma}{4\pi z_{f}^{2}}-\frac{i\Gamma(z_{f}^{2}+\bar{z_{f}^{2}})}{\pi(z_{f}^{2}-\bar{z_{f}}^{2})^{2}}+2\lambda
+\]
+\[
+b=\frac{2i\Gamma z_{f}\bar{z_{f}}}{\pi(z_{f}^{2}-\bar{z_{f}^{2}})^{2}}
+\]
+带入平衡位置坐标计算$a,b$的具体值：
+\[
+a=4\lambda, \quad b=-4i\lambda
+\]
+则复数方程为:
+\[
+\frac{\mathrm{d}\delta z_{f}}{\mathrm{d}t}=4\lambda \delta_{f}-4i\lambda \delta \bar{z_{f}}
+\]
+
+\subsection{构造Jacobi矩阵}
+这一节的过程本质上是将一个包含非解析耦合项（即包含共轭项$\delta z_{f}$）的复数方程，拆解为描述实数坐标 $(x, y)$演化的二维实变量微分系统，具体推导过程如下。
+
+令
+\begin{align*}
+    \delta z_{f}&=x+iy,\\
+    \delta \bar{z_{f}}&=x-iy,\\
+    a&=a_{r}+ia_{i}, \\
+    b&=b_{r}+ib_{i}
+\end{align*}
+\begin{align*}
+    \frac{\mathrm{d}(x+iy)}{\mathrm{d}t}&=(a_{r}+ia_{i})(x+iy)+(b_{r}+ib_{i})(x-iy)\\
+    \frac{\mathrm{d}x}{\mathrm{d}t}&=(a_{r}+b_{r})x+(b_{i}-a_{i})y\\
+    \frac{\mathrm{d}y}{\mathrm{d}t}&=(a_{r}-b_{r})y+(a_{i}+b_{i})x
+\end{align*}
+
+矩阵化
+
+设$\frac{\mathrm{d}\mathbf{X}}{\mathrm{d}t}=\mathbf{JX}$，则上述二维实变量微分系统可以写为
+\[
+\frac{\mathrm{d}}{\mathrm{d}t}\binom{x}{y}=\begin{bmatrix}
+    a_{r}+b_{r} & -(a_{i}-b_{i}) \\
+    a_{i}+b_{i} & a_{r}-b_{r}
+\end{bmatrix}
+\binom{x}{y}
+\]
+代入已算的具体$a,b$值，Jacobi矩阵为
+\[
+\mathbf{J}=
+\begin{bmatrix}
+    4\lambda & -4\lambda \\
+    -4\lambda & 4\lambda
+\end{bmatrix}
+\]
+此为扰动的随时间演化矩阵方程
+\subsubsection*{物理参数重组与意义说明}
+为了揭示平衡点附近的动力学本质，我们将上述基于复系数 $a, b$ 构造的矩阵映射为具有明确物理意义的“拉伸-旋转”竞争模型。雅可比矩阵可一般性地重构为：
+\[
+\mathbf{J}(z_f^*) = \begin{pmatrix} \lambda_{eff} & -\Omega \\ \Omega & -\lambda_{eff} \end{pmatrix}
+\]
+其中：
+\begin{itemize}
+    \item \textbf{$\lambda_{eff}$} 代表背景剪切流产生的\textbf{等效拉伸强度 (Stretching Strength)}。它对应矩阵的对角项 $\Re(a+b)$，在物理上倾向于将点涡沿流向拉伸，形成不稳定的鞍点结构。
+    \item \textbf{$\Omega$} 代表由镜像系统诱导的\textbf{等效旋转强度 (Effective Rotation)}。根据推导，$ \Omega \propto \Gamma/|z_f^*|^2 $。虽然在平衡点代入计算时，$\Gamma$ 的显式数值常与其平衡位置 $|z_f^*|^2$ 的项发生抵消，但这正说明了点涡强度已转化为几何稳定的约束力。
+\end{itemize}
+这种参数重组将复杂的代数项归纳为两种物理效应的竞争：背景流的“推开”作用与镜像系统的“捕获”旋转作用。
+
+\subsection{求解特征方程}
+设矩阵方程有指数形式的解$\mathbf{X}(t)=\mathbf{v}e^{\sigma}t$，其中$\mathbf{v},\sigma$分别为特征向量与特征值
+
+代入方程并推导
+\begin{align*}
+    \frac{\mathrm{d}(\mathbf{v}e^{\sigma t})}{\mathrm{d}t}=\sigma \mathbf{v}e^{\sigma t}=\mathbf{J}\mathbf{v}e^{\sigma t}
+\end{align*}
+指数项永远非零，可以消去
+\begin{align*}
+    \sigma \mathbf{v}=\mathbf{J}\mathbf{v}\\
+    (\mathbf{J}-\sigma\mathbf{I})\mathbf{v}=0
+\end{align*}
+该矩阵方程中特征向量为未知量，该方程存在非零解的条件为系数阵$\mathbf{J}-\sigma\mathbf{I}$行列式为零，即特征方程为：
+\[
+\left|\mathbf{J}-\sigma\mathbf{I}\right|=0
+\]
+代入Jacobi矩阵后得到
+\[
+(4\lambda-\sigma)^{2}-16\lambda^{2}=0
+\]
+解得
+\[
+\sigma_{1}=0, \quad \sigma_{2}=8\lambda
+\]
+其中$\sigma_{2}$代表一种不稳定/发散情况，在平衡点附近，扰动会指数增长，不稳定，背景流的强度$\lambda$主导点涡的运动，将点涡拉离平衡点，无法回到稳定位置；$\sigma_{1}$代表中性稳定情况，扰动在平衡点附近既不增加也不衰减，这表示系统中的某种对称性或退化性，相图中可能意味着点涡沿某条路径移动时系统总能量保持不变。
+
+考虑到问题的物理背景，$\sigma_{2}$被舍弃，此时点涡会在拐角处维持，这与我们观察到的现象相符。
+
+\subsubsection*{动力学稳定性判据：拉伸与旋转的竞争}
+特征值 $\sigma_{\pm} = \pm \sqrt{\lambda^2 - \Omega^2}$ 刻画了平衡点附近的拓扑结构，反映了流场中两种效应的竞争结果 [2, 3]：
+\begin{enumerate}
+    \item \textbf{拉伸占优模式 ($\lambda^2 > \Omega^2$)}：特征值为实数，平衡点表现为\textbf{鞍点 (Saddle Point)}。此时背景流的剪切拉伸作用超过了点涡的旋转约束，扰动将沿特征向量方向指数级增长，点涡无法在角部维持稳定 [3, 5]。
+    \item \textbf{旋转占优模式 ($\Omega^2 > \lambda^2$)}：特征值为纯虚数（或复数对），平衡点表现为\textbf{中心点 (Center)}。此时旋转效应占优，点涡受到边界镜像的强力约束，即使受到扰动，也会绕平衡点做周期性轨道运动。这在物理上对应了点涡在角部的稳定“捕获”状态 [5, 6]。
+\end{enumerate}
+本推导中得到的 $\sigma_2 = 8\lambda$ 属于拉伸占优的特殊发散模态，在物理分析中通常需通过初始条件约束（令系数为0）来保证点涡的持久性 [7, 8]。

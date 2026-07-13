@@ -1,0 +1,45 @@
+%!TEX program = xelatex
+
+% 导言区
+\documentclass[a4paper,12pt]{ctexart}
+% 全部设置导入
+\input{init.tex}
+
+
+% 信息区
+\title{层流边界层相似理论推导}
+%\author{Angrish Plumson}
+%\date{\today}
+
+% 正文区
+\begin{document}
+
+\maketitle
+
+\include{files/intro.tex}
+
+\include{files/ch01.tex} % 竖壁壁射流边界层分析
+
+%\include{files/ch02.tex} % 守恒量推导内禀尺度
+%\include{files/ch03.tex} % 壁射流的特征量分析与幂律形式的合理性
+%\include{files/ch04.tex} % 壁射流的内禀尺度与自相似形式的合理性
+%\include{files/ch05.tex} % 壁射流边界层问题推导草稿
+\include{files/ch06.tex} % karman问题，积分方法
+%\include{files/ch07.tex} % 竖壁-涡-水平壁整体建模，考虑压力梯度
+\include{files/ch08.tex} % SC建模
+%\include{files/ch09.tex} % 引入压力相似量的分析，完整的，且某种程度上证明了我的努力方向是错误的。
+\include{files/ch10.tex} % 无黏有旋建模分析
+\include{files/ch11.tex} % 分离距离量纲分析
+%\include{files/ch12.tex} % NS方程变形推导
+\include{files/ch13.tex} % 势流与边界层模型混合
+\include{files/ch14.tex} % SC变换与源汇模型
+\include{files/ch15.tex} % 角落中的空心涡
+\include{files/ch16.tex} % 角涡静止在拐角处位置的坐标推导
+\include{files/ch17.tex} % 角涡推导思路整理
+\include{files/ch18.tex} % 角涡在平衡点处的稳定性分析
+\include{files/ch18a.tex} % 稳定性分析的详细推导
+\include{files/ch19.tex} % 逻辑梳理：角涡在边界影响下达到动态平衡
+\include{files/ch20.tex} % 流动稳定性
+\include{files/ch21.tex} % hiemenz流
+\include{files/ch22.tex} % 点源点汇流动拓扑、置换混合通风数学定义
+\end{document}

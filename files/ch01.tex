@@ -1,0 +1,492 @@
+
+\section{竖壁贴附区壁射流边界层分析}
+
+拐角区使用中线势流假设，其余两个壁面是壁射流问题，使用相似解分析
+
+
+
+\subsection{竖向壁面区的相似解分析}
+引入射流型边界层假设以及流函数，坐标系为$y'O'x$，忽略法向$x$的动量方程。流向速度与法向速度分别为$u,v$.
+\begin{align}
+    u=\frac{\partial \psi}{\partial x}, \quad -v=\frac{\partial \psi}{\partial y'}
+\end{align}
+流向动量方程为：
+\begin{align}
+     \frac{\partial \psi}{\partial x}\frac{\partial^{2} \psi}{\partial y'\partial x} - \frac{\partial \psi}{\partial y'}\frac{\partial^{2} \psi}{\partial x^{2}}=\nu\frac{\partial^{3} \psi}{\partial x^{3}}
+\end{align}
+
+引入竖壁区的局部特征尺度$U_{1}(y'),L_{1}(y')$，相似解定义为：
+\begin{align}
+    \psi=U_{1}L_{1}f(\frac{x}{L_{1}}), \quad \eta_{1}=\frac{x}{L_{1}}
+\end{align}
+
+\begin{align}
+    u=\frac{\partial \psi}{\partial x}&=U_{1}f'\\
+    -v=\frac{\partial \psi}{\partial y'}&=f\left(
+    L_{1}\frac{\mathrm{d}U_{1}}{\mathrm{d}y'}+U_{1}\frac{\mathrm{d}L_{1}}{\mathrm{d}y'}
+    \right)-f'\frac{U_{1}x}{L_{1}}\frac{\mathrm{d}L_{1}}{\mathrm{d}y'}\\
+    \frac{\partial u}{\partial y'}=\frac{\partial^{2} \psi}{\partial y'\partial x}&=f'\frac{\mathrm{d}U_{1}}{\mathrm{d}y'}-
+    \frac{U_{1}x}{L_{1}^{2}}f''\frac{\mathrm{d}L_{1}}{\mathrm{d}y'}\\
+    \frac{\partial u}{\partial x}=\frac{\partial^{2} \psi}{\partial x^{2}}&=\frac{U_{1}}{L_{1}}f''\\
+    \frac{\partial^{2} u}{\partial x^{2}}=\frac{\partial^{3} \psi}{\partial x^{3}}&=\frac{U_{1}}{L_{1}^{2}}f'''
+\end{align}
+
+竖壁区的边界层流向动量方程为：
+\begin{align}
+    \label{eq-ode-v-wall}
+    f'''+\left(\frac{L_{1}^{2}}{\nu}\frac{\mathrm{d}U_{1}}{\mathrm{d}y'}+\frac{L_{1}U_{1}}{\nu}\frac{\mathrm{d}L_{1}}{\mathrm{d}y'}\right)ff''-\frac{L_{1}^{2}}{\nu}\frac{\mathrm{d}U_{1}}{\mathrm{d}y'}f'f'=0
+\end{align}
+
+存在相似解的条件方程组为：
+\begin{align}
+    \frac{L_{1}^{2}}{\nu}\frac{\mathrm{d}U_{1}}{\mathrm{d}y'}&=a_{1}\\
+    \frac{L_{1}U_{1}}{\nu}\frac{\mathrm{d}L_{1}}{\mathrm{d}y'}&=b_{1}
+\end{align}
+其中$a_{1},b_{1}$分别为常数。
+
+式\ref{eq-ode-v-wall}写为
+\begin{align}
+    f'''+(a_{1}+b_{1})ff''-a_{1}f'f'=0
+\end{align}
+
+竖壁区壁射流边界条件为：
+\begin{align}
+    &0<y'<H_{s}\notag\\
+    &x=0,\quad f=f'=0; \quad x\rightarrow \infty,\quad f'=0
+\end{align}
+其中$H_{s}$为竖壁区域射流入口到分离点的长度。
+
+令$a_{1}+b_{1}=1$，则\ref{eq-ode-v-wall}可写为
+\begin{align}
+    f'''+ff''+(b_{1}-1)f'f'=0
+\end{align}
+
+引入守恒量求出$b_{1}$的值。
+
+变形后的原始变量边界层控制方程
+\begin{align}
+    \rho u\frac{\partial u}{\partial y'}+\rho u\frac{\partial v}{\partial x}&=0\\
+    \rho u\frac{\partial u}{\partial y'}+\rho v\frac{\partial u}{\partial x}&=\mu\frac{\partial^{2}u}{\partial x^{2}}
+\end{align}
+
+两式相加合并微分得到
+\begin{align}
+    \rho\left(\frac{\partial uu}{\partial y'}+\frac{\partial uv}{\partial x}\right)=\mu\frac{\partial^{2}u}{\partial x^{2}}=\frac{\partial \tau}{\partial x}
+\end{align}
+其中$\tau$表示流向的切应力。沿竖向区域的壁射流法向($x$方向)积分
+\begin{align}
+    \rho\frac{\mathrm{d}}{\mathrm{d}y'}\int_{0}^{\infty}uu\mathrm{d}x=-\tau_{w}\\
+    \frac{\mathrm{d}J}{\mathrm{d}y'}=-\tau_{w}
+\end{align}
+上式表面在壁射流相似解成立的区域内，壁射流的动量通量沿流向与壁面切应力平衡，此时无法获得能求出相似ODE特征值的条件表达式。
+
+在壁射流以内，壁面以上任一点$x$到壁射流外缘$x=\infty$上对壁射流边界层动量方程积分
+\begin{align}
+    \int_{x}^{\infty}\rho\left(\frac{\partial uu}{\partial y'}+\frac{\partial uv}{\partial x}\right)\mathrm{d}x=\int_{x}^{\infty}\frac{\partial \tau}{\partial x}\mathrm{d}x\\
+    \frac{\partial }{\partial y'}\int_{x}^{\infty}\rho uu\mathrm{d}x-\rho uv|_{x}=-\tau_{x}
+\end{align}
+
+令$W=\int_{x}^{\infty}\rho uu\mathrm{d}x$，则有$\frac{\partial W}{\partial x}=-\rho uu$。上式变形为
+\begin{align}
+    \frac{\partial W}{\partial y'}-\rho uv|_{x}=-\tau_{x}\\
+    u\frac{\partial W}{\partial y'}-u\rho uv|_{x}=-u\tau_{x}\\% 乘上一个积分起点处x的流向速度u
+    u\frac{\partial W}{\partial y'}+v\frac{\partial W}{\partial x}+u\tau_{x}=0
+\end{align}
+
+引入两边同乘$W$的连续方程
+\begin{align}
+    W\frac{\partial u}{\partial y'}+W\frac{\partial v}{\partial x}=0
+\end{align}
+
+合并两个式子
+\begin{align}
+    \frac{\partial uW}{\partial y'}+\frac{\partial vW}{\partial x}+u\tau=0
+\end{align}
+
+沿竖向区域的壁射流法向($x$方向)积分
+\begin{align}
+    \int_{0}^{\infty}\frac{\partial uW}{\partial y'}\mathrm{d}x+\int_{0}^{\infty}\frac{\partial vW}{\partial x}\mathrm{d}x+\int_{0}^{\infty}u\tau\mathrm{d}x=0\\
+    \frac{\partial }{\partial y'}\int_{0}^{\infty}uW\mathrm{d}x+vW|_{0}^{\infty}+\int_{0}^{\infty}u\tau\mathrm{d}x=0
+\end{align}
+边界条件：$W(\infty)=0，\quad v(0)=0$
+\begin{align}
+    \frac{\partial }{\partial y'}\int_{0}^{\infty}uW\mathrm{d}x+\mu\int_{0}^{\infty}\frac{\partial \frac{u^{2}}{2}}{\partial x}\mathrm{d}x=0\\
+    \frac{\mathrm{d} }{\mathrm{d} y'}\int_{0}^{\infty}uW\mathrm{d}x=0
+\end{align}
+得到守恒量：
+\begin{align}
+    F=\int_{0}^{\infty}u\left(\int_{x'}^{\infty}\rho uu\mathrm{d}x'\right)\mathrm{d}x=\cst
+\end{align}
+代入相似形式的量
+\begin{align}
+    \rho U_{1}^{3}L_{1}^{2}\int_{0}^{\infty}f'\left(\int_{\eta_{1}}^{\infty}f'f'\mathrm{d}\eta_{1}'\right)\mathrm{d}\eta_{1}=\cst
+\end{align}
+这个式子是壁射流相似解存在的条件方程，需要有
+\begin{align}
+    U_{1}^{3}L_{1}^{2}=\cst\\
+    U_{1}^{2}L_{1}\left(2U_{1}\frac{\mathrm{d}L_{1}}{\mathrm{d}y'}+3L_{1}\frac{\mathrm{d}U_{1}}{\mathrm{d}y'}\right)=0
+\end{align}
+代入前两个条件方程：
+\begin{align}
+    a_{1}&=-2\\
+    b_{1}&=3
+\end{align}
+
+最终得到了竖壁区壁射流相似解的数学表达式为：
+\begin{align}
+    &f'''+ff''+2f'f'=0\\
+    \text{边界条件为：}\notag\\
+     &0<y'<H_{s}\notag\\
+    &x=0,\quad f=f'=0; \quad x\rightarrow \infty,\quad f'=0
+\end{align}
+
+\subsection{特征尺度表达式的推导}
+解如下方程组
+\begin{align}
+    \frac{L_{1}^{2}}{\nu}\frac{\mathrm{d}U_{1}}{\mathrm{d}y'}&=-2\\
+    \frac{L_{1}U_{1}}{\nu}\frac{\mathrm{d}L_{1}}{\mathrm{d}y'}&=3
+\end{align}
+
+令$P=\frac{\mathrm{d}U_{1}}{\mathrm{d}y'}$，由链式法则$\frac{\mathrm{d}L_{1}}{\mathrm{d}y'}=\frac{\mathrm{d}L_{1}}{\mathrm{d}P}\frac{\mathrm{d}P}{\mathrm{d}y'}$，以及$\frac{\mathrm{d}P}{\mathrm{d}y'}=\frac{\mathrm{d}P}{\mathrm{d}U_{1}}\frac{\mathrm{d}U_{1}}{\mathrm{d}y'}=\frac{\mathrm{d}P}{\mathrm{d}U_{1}}P$。
+
+由原方程组第一式得：
+\begin{align}
+    L_{1}=\left(\frac{-2\nu}{P}\right)^{\frac{1}{2}}\\
+    \frac{\mathrm{d}L_{1}}{\mathrm{d}P}=\frac{\nu}{P^{2}\sqrt{\frac{-2\nu}{P}}}\\
+    \frac{\mathrm{d}L_{1}}{\mathrm{d}y'}=\frac{\nu}{P^{2}\sqrt{\frac{-2\nu}{P}}}\frac{\mathrm{d}^{2}U_{1}}{\mathrm{d}y'^{2}}
+\end{align}
+
+由原方程组第二式得：
+\begin{align}
+    \frac{U_{1}}{P^{2}}\frac{\mathrm{d}^{2}U_{1}}{\mathrm{d}y'^{2}}=3\\
+    \frac{U_{1}}{P^{2}}\frac{\mathrm{d}P}{\mathrm{d}y'}=3\\
+    \frac{\mathrm{d}P}{\mathrm{d}y'}=\frac{3P^{2}}{U_{1}}\\
+    \frac{\mathrm{d}P}{3P}=\frac{\mathrm{d}U_{1}}{U_{1}} \\% 代入了第二个链式法则公式
+    P=\frac{\mathrm{d}U_{1}}{\mathrm{d}y'}=C_{1}U_{1}^{3}\\
+    U_{1}=\left(\frac{-1}{2(C_{1}y'+C_{2})}\right)^{\frac{1}{2}}
+\end{align}
+
+回代求$L_{1}$
+\begin{align}
+    L_{1}&=\sqrt{\frac{-2\nu}{C_{1}}}U_{1}^{-\frac{3}{2}}\\
+        &=\sqrt{\frac{-2\nu}{C_{1}}}\left(\frac{-1}{2(C_{1}y'+C_{2})}\right)^{-\frac{3}{4}}
+\end{align}
+
+为了确定两个积分常数$C_{1},C_{2}$，引入物理边界条件假设：射流入口平均速度为$U_{0}$，取入口中心轴线处$x=\frac{B}{2},u(0,\frac{B}{2})=U_{0}$，壁射流最大流速所在的轴线也是由此开始，且由于速度衰减，从出口往后的最大速度也不会超过$U_{0}$，由前面的相似解表达式有：
+\begin{align}
+    u(0,\frac{B}{2})=U_{1}(0)f'(\frac{B}{2L_{1}(0)})=U_{0}
+\end{align}
+令此时相似变量描述的就是速度剖面中最大速度的位置，即$\eta_{m}=\frac{B}{2L_{1}(0)},f'_{m}=f'(\eta_{m})$，那么有：
+\begin{align}
+    L_{1}(0)&=\frac{B}{2\eta_{m}}\\
+    U_{1}(0)&=\frac{U_{0}}{f'_{m}}
+\end{align}
+
+将上面两式左边代入$U_{1},L_{1}$的原始表达式：
+\begin{align}
+    \sqrt{\frac{-1}{2C_{2}}}&=\frac{U_{0}}{f'_{m}}\\
+    \sqrt{\frac{-2\nu}{C_{1}}}U_{1}^{-\frac{3}{2}}(0)&=\frac{B}{2\eta_{m}}
+\end{align}
+解得积分常数$C_{1},C_{2}$：
+\begin{align}
+    C_{1}&=\frac{-8\nu \eta_{m}^{2}f_{m}^{'3}}{B^{2}U_{0}^{3}}\\
+    C_{2}&=\frac{-f'^{2}_{m}}{2U_{0}^{2}}
+\end{align}
+
+则特征尺度显式表达式：
+\begin{align}
+    U_{1}(y')&=\frac{BU_{0}^{\frac{3}{2}}}{f'_{m}(16\nu \eta^{2}_{m}f'_{m}y'-B^{2}U_{0})^{1/2}}\\
+    L_{1}(y')&=\frac{1}{2\eta_{m}B^{\frac{1}{2}}}\left(\frac{16\nu \eta^{2}_{m}f'_{m}y'-B^{2}U_{0}}{U_{0}f'_{m}}\right)^{\frac{3}{4}}
+\end{align}
+
+用射流出口宽度$B$归一化的特征尺度表达式：
+\begin{align}
+    Y_{b}&=\frac{y'}{B}\\
+    U_{1}(Y_{b})&=\frac{BU_{0}^{\frac{3}{2}}}{f'_{m}(16\nu \eta^{2}_{m}f'_{m}BY_{b}-B^{2}U_{0})^{1/2}}\\
+    L_{1}(Y_{b})&=\frac{1}{2\eta_{m}B^{\frac{1}{2}}}\left(\frac{16\nu \eta^{2}_{m}f'_{m}BY_{b}-B^{2}U_{0}}{U_{0}f'_{m}}\right)^{\frac{3}{4}}
+\end{align}
+
+\subsection{竖壁区特征量的推导}
+\discard{
+\subsubsection*{壁射流断面平均流速流向分布}
+定义壁射流在 $y'$ 截面的平均流速为：
+\begin{align}
+    u_a(y') = \frac{1}{\delta(y')}\int_0^{\delta(y')} u(y', x) \, \mathrm{d}x
+\end{align}
+
+其中 $\delta(y')$ 表示该截面上的壁射流厚度。
+
+代入相似解形式：
+\begin{align}
+    u(y', x) = U_1(y') f'\left( \frac{x}{L_1(y')} \right)
+\end{align}
+
+进行变量代换 $x = \eta L_1(y')$，得：
+\begin{align}
+    Q(y') &= \int_0^{\delta(y')} u(y', x) \, \mathrm{d}x = U_1(y') L_1(y') \int_0^{\eta_\infty} f'(\eta) \, \mathrm{d}\eta \\
+          &= U_1(y') L_1(y') Q^*
+\end{align}
+
+其中定义归一化常数：
+\begin{align}
+    Q^* = \int_0^{\eta_\infty} f'(\eta) \, \mathrm{d}\eta
+\end{align}
+
+由于 $\delta(y') = L_1(y') \eta_\infty$，故有：
+\begin{align}
+    u_a(y') &= \frac{Q(y')}{\delta(y')} 
+    = \frac{U_1(y') L_1(y') Q^*}{L_1(y') \eta_\infty} 
+    = \left( \frac{Q^*}{\eta_\infty} \right) U_1(y')
+\end{align}
+
+从而得出平均速度与局部速度尺度成正比：
+\begin{align}
+    u_a(y') = C_a \cdot U_1(y'), \quad C_a = \frac{Q^*}{\eta_\infty}
+\end{align}
+
+\subsubsection*{断面速度分布}
+速度分布归一化表达为：
+\begin{align}
+    \frac{u(y',x)}{u_{m}(y',x_{m})}=\frac{f'(\eta)}{f'(\eta_{m})}=g(\frac{x}{x_{m}})
+\end{align}
+\begin{itemize}
+    \item $x_{m}=\eta_{m}L_{1}(y')$为最大速度所对应的横向位置
+    \item $f'(\eta)$为相似解的数值解
+    \item 此归一化分布为普适曲线，与系统参数$B,U_{0}$等无关
+\end{itemize}
+该表达式可通过数值解相似ODE后归一化绘图得到。
+
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{壁射流守恒量}
+
+壁射流相似结构成立的特征守恒量 $F$，其物理意义为沿流向的动量扩散势的通量守恒。
+
+定义式为：
+\begin{align*}
+    F &= \rho U_{1}^{3}L_{1}^{2} \int_{0}^{\infty}f'\left(\int_{\eta_{1}}^{\infty}f'f'\,\mathrm{d}\eta_{1}'\right)\,\mathrm{d}\eta_{1}
+    = \rho U_{1}^{3}L_{1}^{2}F^{*} = \text{const}
+\end{align*}
+其中 $F^*$ 为无量纲动量结构因子，是由相似解唯一确定的常数。
+
+$F$ 的物理维度为 $[\mathrm{kg}\cdot\mathrm{m}/\mathrm{s}^3]$，表示单位宽度上单位时间内动量平方的沿流向扩散通量。在自相似结构成立的前提下，该量在流向保持恒定。
+
+代入特征尺度表达式得到：
+\begin{align}
+    U_{1}^{3}L_{1}^{2} = \frac{B^{2}U_{0}^{3}}{4\eta_{m}^{2}f_{m}^{'\frac{9}{2}}}
+\end{align}
+
+数值计算无量纲常数：
+\begin{align}
+    F^{*} = \int_{0}^{\infty}f'\left(\int_{\eta_{1}}^{\infty}f'f'\,\mathrm{d}\eta_{1}'\right)\,\mathrm{d}\eta_{1} = 0.100054
+\end{align}
+
+因此，壁射流的特征守恒量最终表达式为：
+\begin{align}
+    F = 0.100054\cdot \frac{\rho B^{2}U_{0}^{3}}{4\eta_{m}^{2}f_{m}^{'\frac{9}{2}}}
+\end{align}
+
+
+\subsubsection{壁射流壁面切应力流向分布}
+切应力及壁面切应力定义为:
+\begin{align*}
+    \tau&=\mu\frac{\partial u}{\partial x}\\
+    \tau_{w}&=\mu\frac{\partial u}{\partial x}|_{x=0}
+\end{align*}
+
+代入相似解表达式：
+\begin{align}
+    \tau_{w}=\mu\frac{U_{1}}{L_{1}}f''(0)
+\end{align}
+
+使用射流出口参数$U_{0},B$对切应力以及流向坐标$y'$进行无量纲化，表达式为：
+\begin{align}
+    \frac{\tau_{w}}{\mu\frac{U_{0}}{B}}=\frac{2\eta_{m}f''(0)(BU_{0})^{\frac{5}{4}}}{f_{m}^{'\frac{1}{4}}(16\nu\eta_{m}^{2}f'_{m}\frac{y'}{B}-BU_{0})^{\frac{5}{4}}}
+\end{align}
+
+\subsubsection{壁射流最大速度及法向速度流向分布}
+
+壁射流的流向速度满足如下相似解形式：
+\begin{align*}
+    u(y',x) = U_{1}(y')\,f'\left(\frac{x}{L_{1}(y')}\right)
+\end{align*}
+
+定义每个法向位置 $y'$ 上的最大速度为 $u_{m}(y')$，其对应的位置为 $x = x_{m}(y')$，使得：
+\begin{align*}
+    u_{m}(y') = u(y', x_{m}) = U_{1}(y')\,f'\left(\frac{x_{m}}{L_{1}(y')}\right)
+    = U_{1}(y') f'_{m}, \quad \text{其中}\quad \eta_{m} = \frac{x_{m}}{L_{1}(y')}
+\end{align*}
+
+代入 $U_{1}(y')$ 的显式表达式，可得最大速度相对于出口平均速度 $U_{0}$ 的无量纲流向分布：
+\begin{align}
+    \frac{u_{m}(y')}{U_{0}} &= \frac{B\,U_{0}^{1/2}}{\left(16\nu\,\eta^{2}_{m}f'_{m}y' - B^{2}U_{0}\right)^{1/2}} \notag \\
+    &= \left( \frac{16\nu\,\eta_{m}^{2}f'_{m}}{B U_{0}} \frac{y'}{B} - 1 \right)^{-1/2} \notag \\
+    &= \left( \frac{16\nu\,\eta_{m}^{2}f'_{m}}{B U_{0}} Y_{b} - 1 \right)^{-1/2} \label{eq:um_dist}
+\end{align}
+该式描述了壁射流随下游方向的速度衰减规律。
+
+\vspace{0.5em}
+壁射流的法向速度分量由相似解导出为：
+\begin{align*}
+    v(y', x) = f'\frac{U_{1}(y')x}{L_{1}(y')} \frac{\mathrm{d}L_{1}}{\mathrm{d}y'} - f\left(\frac{x}{L_{1}(y')}\right) \frac{\mathrm{d}}{\mathrm{d}y'}\left[U_{1}(y')L_{1}(y')\right]
+\end{align*}
+
+特别地，考虑最大速度所在的流线 $x = x_{m}(y')$，其对应的法向速度定义为 $v_{m}(y')$，可写为：
+\begin{align*}
+    v_{m}(y') = f'_{m}\,\eta_{m}\,U_{1}(y')\,\frac{\mathrm{d}L_{1}}{\mathrm{d}y'}
+    - f_{m}\,\frac{\mathrm{d}}{\mathrm{d}y'}\left[ U_{1}(y')\,L_{1}(y') \right]
+\end{align*}
+其中 $f'_{m} = f'(\eta_{m})$，$f_{m} = f(\eta_{m})$ 为相似函数在 $\eta_{m}$ 处的取值。
+
+将 $U_1, L_1$ 的显式表达式代入，并进行无量纲化，得到 $v_{m}/U_{0}$ 的表达式为：
+\begin{align}
+    \frac{v_{m}}{U_{0}} = \frac{16\nu\,\eta^{2}_{m}f'_{m}}{B^{1/4}U_{0}^{1/4}f_{m}^{'3/4}(16\nu\,\eta^{2}_{m}f'_{m}Y_{b}-BU_{0})^{3/4}}\left(\frac{3}{8}+\frac{f_{m}}{8\eta_{m}f'_{m}B^{1/2}(16\nu\,\eta^{2}_{m}f'_{m}Y_{b}-BU_{0})^{1/2}}\right)
+    \label{eq:vm}
+\end{align}
+
+公式 \eqref{eq:um_dist} 与 \eqref{eq:vm} 分别描述了壁射流沿流向的流向最大速度与特征轴线上的法向速度演化趋势。
+
+
+
+
+\subsubsection{特征厚度参数}
+定义一组描述壁射流剖面结构的典型厚度度量
+
+\begin{enumerate}
+    \item 内层厚度$\delta_{m}$
+    \begin{align*}
+        \delta_{m}&=L_{1}(y')\eta_{m}\\
+        &=\frac{1}{2B^{\frac{1}{2}}}\left(\frac{16\nu\eta_{m}^{2}f'_{m}y'-B^{2}U_{0}}{U_{0}f'_{m}}\right)^{\frac{3}{4}}
+    \end{align*}
+    表示最大速度出现的位置与壁面的距离，通常是壁射流内层的厚度。
+
+使用射流出口宽度$B$进行无量纲化：
+\begin{align}
+    \frac{\delta_{m}}{B}&=\frac{1}{2}\left(\frac{16\nu\eta_{m}^{2}f'_{m}Y_{b}-BU_{0}}{BU_{0}f'_{m}}\right)^{\frac{3}{4}}\\
+    &=g(Y_{b})
+\end{align}
+    \item 特征厚度$\delta_{0.5}$：$u=0.5u_{m}$所在的法向坐标位置，定义为
+    \begin{align*}
+        \delta_{0.5}&=\delta_{m}+L_{1}(y')\eta_{0.5}\\
+        &=L_{1}(\eta_{m}+\eta_{0.5})\\
+        &=\frac{1}{2\eta_{m}B^{\frac{1}{2}}}\left(\frac{16\nu\eta_{m}^{2}f'_{m}y'-B^{2}U_{0}}{U_{0}f'_{m}}\right)^{\frac{3}{4}}(\eta_{m}+\eta_{0.5})
+    \end{align*}
+    其中，$\eta_{0.5}$由$f'(\eta_{0.5})=0.5f'_{m}$数值反解，可通过插值法获得。
+    
+    使用射流出口宽度$B$进行无量纲化
+    \begin{align}
+        \frac{\delta_{0.5}}{B}=\frac{1}{2\eta_{m}B^{\frac{3}{4}}}\left(\frac{16\nu\eta_{m}^{2}f'_{m}Y_{b}-BU_{0}}{U_{0}f'_{m}}\right)^{\frac{3}{4}}(\eta_{m}+\eta_{0.5})
+    \end{align}
+    \item 外缘厚度$\delta$：定义为射流速度接近0的法向坐标位置，表示的是射流的全厚度。
+    \begin{align*}
+        \delta&=L_{1}(y')\eta_{\infty}\\
+        &=\frac{1}{2\eta_{m}B^{\frac{1}{2}}}\left(\frac{16\nu\eta_{m}^{2}f'_{m}y'-B^{2}U_{0}}{U_{0}f'_{m}}\right)^{\frac{3}{4}}\eta_{\infty}
+    \end{align*}
+    通常选取$\eta_{\infty}\approx 6\sim10$即可满足工程精度，本研究中最大取到了12.
+    使用射流出口宽度$B$进行无量纲化
+    \begin{align}
+        \frac{\delta}{B}=\frac{1}{2\eta_{m}B^{\frac{3}{4}}}\left(\frac{16\nu\eta_{m}^{2}f'_{m}Y_{b}-BU_{0}}{U_{0}f'_{m}}\right)^{\frac{3}{4}}\eta_{\infty}
+    \end{align}
+\end{enumerate}
+
+\subsubsection{壁射流外缘法向速度沿流向分布}
+法向速度分量的相似解形式为：
+\begin{align*}
+    v=f'\frac{U_{1}x}{L_{1}}\frac{\mathrm{d}L_{1}}{\mathrm{d}y'}-f\frac{\mathrm{d}U_{1}L_{1}}{\mathrm{d}y'}
+\end{align*}
+
+由于 $\eta \to \infty$ 处的速度函数趋于常数，故在理论表达中无法直接带入无穷。为处理该问题，引入数值截断点 $\eta_\infty$ 作为边界层外缘的近似位置。根据相似结构，有：
+
+\[
+v_{\infty}(y') \approx f'(\eta_\infty) \cdot U_1(y') \cdot \eta_\infty \cdot \frac{dL_1}{dy'} - f(\eta_\infty) \cdot \frac{d(U_1 L_1)}{dy'}
+\]
+
+其中 $\eta_\infty$ 可取 $10\sim12$，具体由数值计算确定。
+
+这里我们根据前面的分析与数值结果取值为：
+\[
+\eta_{\infty}=12, \quad f(\infty)=1, \quad f'(\infty)=0
+\]
+
+则外缘法向速度表达式变为
+\begin{align*}
+    v_{\infty}&=-\frac{\mathrm{d}(U_{1}L_{1})}{\mathrm{d}y'}\\
+    &=\frac{16\nu\eta_{m}^{2}f'_{m}B^{\frac{1}{2}}U_{0}^{\frac{3}{4}}}{8\eta_{m}f_{m}^{'\frac{7}{4}}(16\nu\eta_{m}^{2}f'_{m}y'-B^{2}U_{0})^{\frac{5}{4}}}
+\end{align*}
+
+使用射流出口流速和宽度进行无量纲化
+\begin{align}
+    \frac{v_{\infty}}{U_{0}}&=\frac{16\nu\eta_{m}^{2}f'_{m}}{8\eta_{m}f_{m}^{'\frac{7}{4}}B^{\frac{3}{4}}U_{0}^{\frac{1}{4}}(16\nu\eta_{m}^{2}f'_{m}Y_{b}-BU_{0})^{\frac{5}{4}}}\\
+    & = g(Y_{b})
+\end{align}
+
+\subsubsection{壁射流体积通量沿流向分布}
+壁射流在$y'$截面的流量为
+\begin{align*}
+    Q(y')=\int_{0}^{\delta(y')}u(y',x)\mathrm{d}x=U_{1}(y')L_{1}(y')\int_{0}^{\eta_{\infty}}f'\mathrm{d}\eta
+\end{align*}
+定义归一化常数：
+\begin{align*}
+    Q^{*}=\int_{0}^{\eta_{\infty}}f'\mathrm{d}\eta
+\end{align*}
+其中$Q^{*}$由相似解确定，与系统参数无关。
+
+断面流量$Q=Q^{*}U_{1}L_{1}$，该量可用于描述断面体积流量随流向的演化。
+
+考虑使用射流出口平均速度$U_{0}$与出口宽度$B$的乘积作为归一化特征流量，则断面归一化体积流量为：
+\begin{align}
+    \frac{Q}{Q_{0}}&=Q^{*}\frac{U_{1}(Y_{b})}{U_{0}}\frac{L_{1}(Y_{b})}{B}\\
+    &=\frac{Q^{*}(16\nu\eta_{m}^{2}f'_{m}Y_{b}-BU_{0})^{\frac{1}{4}}}{2\eta_{m}(BU_{0})^{\frac{1}{4}}f_{m}^{'\frac{7}{4}}}\\
+    &=g(Y_{b})
+\end{align}
+
+\subsubsection{壁射流动量通量沿流向分布}
+壁射流在$y'$截面的动量通量为
+\begin{align*}
+    K(y')=U_{1}L_{1}\int_{0}^{\eta_{\infty}}f'^{2}\mathrm{d}\eta
+\end{align*}
+
+定义归一化常数
+\begin{align*}
+    K^{*}=\int_{0}^{\eta_{\infty}}f'^{2}\mathrm{d}\eta
+\end{align*}
+其中$K^{*}$由相似解确定，与系统参数无关。
+
+断面动量通量$K=K^{*}U_{1}^{2}L_{1}$，该量可用于描述断面动量通量随流向的演化。
+
+考虑使用射流出口平均速度$U_{0}$与出口宽度$B$作为归一化特征参量，则断面归一化动量通量为：
+\begin{align}
+    \frac{K}{K_{0}}&=K^{*}\frac{U_{1}^{2}(Y_{b})}{U_{0}^{2}}\frac{L_{1}(Y_{b})}{B}\\
+    &=\frac{Q^{*}(16\nu\eta_{m}^{2}f'_{m}Y_{b}-BU_{0})^{\frac{1}{4}}}{2\eta_{m}(BU_{0})^{\frac{1}{4}}f_{m}^{'\frac{7}{4}}}\\
+    &=g(Y_{b})
+\end{align}
+
+\subsubsection{壁射流核心区持续长度}
+直觉感觉很短
+
+\subsubsection{贴附距离}
+贴附距离$H_{s}$是指壁射流相似结构在流向上保持的末端位置，通常有如下的物理判据：
+\begin{enumerate}
+    \item 壁面切应力流向的导数为0
+    \begin{align*}
+        \frac{\mathrm{d}\tau_{w}}{\mathrm{d}y'}|_{y'=H_{s}}=0,\quad \tau_{w}=\mu\frac{\partial u}{\partial x}|_{x=0}
+    \end{align*}
+    该判据表示壁面剪切效应减弱至极小，意味着壁射流边界层与壁面分离。
+    \item 最大速度流向的导数为0
+    \begin{align*}
+        \frac{\mathrm{d}u_{m}}{\mathrm{d}y'}|_{y'=H_{s}}=0
+    \end{align*}
+    表示壁射流中心轴线速度达到极小值以后可能出现回流或失稳。
+\end{enumerate}
+数值上可以通过拟合$u_{m}(y')$曲线，计算其导数并寻找零点位置获得$H_{s}$。
+
+\paragraph{(1)注记}
+分离点不单单取决于上游的壁射流流动，还取决于下游拐角区的回流涡的流动特性，因此需要将两个部分的流动模型都建立完成后，在分离点处匹配得出具体的分离点坐标位置。
+
+
+
+
+
+
+
+

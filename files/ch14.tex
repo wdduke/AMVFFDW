@@ -1,0 +1,167 @@
+\section{SC变换与源汇模型}
+\subsection{拐角区域的流动}
+假设两壁面的夹角为$k\pi$，以拐角为原点设立物理平面(z平面)坐标系，映射到上半平面计算平面。对应关系表为
+\begin{table}[htbp] 
+    \centering
+    \caption{拐角区域$z$平面与$\zeta$平面控制点对应关系}
+    %\label{tab:corner-mapping}
+    \begin{tabular}{cccc}
+        \toprule
+        控制点 & \multicolumn{2}{c}{$z$平面} & $\zeta$平面 \\
+        \cmidrule(lr){2-3} % 在第2列到第3列下绘制部分横线
+                         & 坐标 & 外角 & 坐标 \\
+        \midrule
+        $A_{1}$ & $z_{1}$     & $0$                 & $-1$ \\
+        $A_{2}$ & $0$            & $(1-k)\pi$       & $0$      \\
+        $A_{3}$ & $z_{3}$             & $0$       & $1$       \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+映射公式表示为
+\begin{align}
+    z&=A\int\frac{\mathrm{d}\zeta}{(\zeta+1)^{0}(\zeta-0)^{1-k}(\zeta-1)^{0}}+B\\
+    &=\frac{A}{k}\zeta^{k}
+\end{align}
+逆映射为
+\begin{align}
+    \zeta=\left(\frac{k}{A}z\right)^{\frac{1}{k}}
+\end{align}
+
+现在假设这个壁面拐角上下游存在两个点，有新的控制点对应关系表
+\begin{table}[htbp] 
+    \centering
+    \caption{分离拐角区域$z$平面与$\zeta$平面控制点对应关系}
+    %\label{tab:corner-mapping}
+    \begin{tabular}{cccc}
+        \toprule
+        控制点 & \multicolumn{2}{c}{$z$平面} & $\zeta$平面 \\
+        \cmidrule(lr){2-3} % 在第2列到第3列下绘制部分横线
+                         & 坐标 & 外角 & 坐标 \\
+        \midrule
+        $A_{1}$ & $z_{1}$     & $0$                 & $-\infty$ \\
+        $A_{2}$ & $z_{2}$            & $(1-k_{1})\pi$       & $-1$      \\
+        $A_{3}$ & $z_{3}$             & $(1-k_{2})\pi$       & $1$       \\
+        $A_{4}$ & $z_{4}$             & $0$       & $\infty$       \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+角度关系为$k-k_{1}-k_{2}+1=0$
+
+映射公式表示为
+\begin{align}
+    z&=A\int\frac{\mathrm{d}\zeta}{(\zeta+\infty)^{0}(\zeta+1)^{1-k_{1}}(\zeta-1)^{1-k_{2}}(\zeta-\infty)^{0}}+B\\
+    &=A\int(\zeta+1)^{k_{1}-1}(\zeta-1)^{k_{2}-1}\mathrm{d}\zeta+B\\
+\end{align}
+逆映射为
+% \begin{align}
+%     \zeta=\left(\frac{k}{A}z\right)^{\frac{1}{k}}
+% \end{align}
+
+\subsection{半无限大区域内流动}
+\subsubsection{区域变换表达式的计算}
+使用SC变换将物理平面($z$平面)映射到计算平面($\zeta$平面)上，列出控制点对应关系。
+\begin{table}[htbp] 
+    \centering
+    \caption{半无限大$z$平面与$\zeta$平面控制点对应关系}
+    \label{tab:optimized-mapping}
+    \begin{tabular}{cccc}
+        \toprule
+        控制点 & \multicolumn{2}{c}{$z$平面} & $\zeta$平面 \\
+        \cmidrule(lr){2-3} % 在第2列到第3列下绘制部分横线
+                         & 坐标 & 外角 & 坐标 \\
+        \midrule
+        $A_{1}$ & $\infty+ih$     & $0$                 & $-\infty$ \\
+        $A_{2}$ & $ih$            & $\frac{\pi}{2}$       & $-1$      \\
+        $A_{3}$ & $0$             & $\frac{\pi}{2}$       & $1$       \\
+        $A_{4}$ & $\infty$        & $0$                 & $\infty$  \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+根据对应关系表代入SC变换表达式中
+\begin{align}
+    z&=A\int \frac{\mathrm{d}\zeta}{\sqrt{(\zeta+1)(\zeta-1)}}+B\notag\\
+    &=A\arccosh \zeta +B
+\end{align}
+式中待定系数$A,B$可以由控制点$A_{2},A_{3}$的对应关系确定
+\begin{align}
+    ih&=A\arccosh(-1)+B\\
+    0&=A\arccosh(1)+B
+\end{align}
+得出$z$平面上半无限长带形区域与$\zeta$上半平面互相变换的解析表达式为
+\begin{align}
+    z&=\frac{h}{\pi}\arccosh\zeta\\
+    \zeta&=\cosh\frac{\pi}{h}z
+\end{align}
+
+\subsubsection{区域中流动的复势}
+边界$A_{1}A_{2}$上，$z=z_{s}=x_{s}+ih$处有一个强度为$Q_{s}$的源，其在计算域中的对应点为
+\begin{align}
+    \zeta_{s}=\cosh\frac{\pi}{h}(x_{s }+ih)
+\end{align}
+因此在$\zeta$平面上，在实轴的$\zeta_{s}=\cosh(\frac{\pi}{h}x_{s}+i\pi)$处有一个强度为$Q_{s}$的源，则在计算域上的流动复势为
+\begin{align}
+    W^{*}(\zeta)=\frac{2Q_{s}}{2\pi}\ln(\zeta-\zeta_{s})
+\end{align}
+
+物理域上，半无限长带形区域内的流动复势是
+\begin{align}
+    W(z)=\frac{Q_{s}}{\pi}\ln(\cosh\frac{\pi}{h}z-\cosh\frac{\pi}{h}z_{s})
+\end{align}
+
+复速度是
+\begin{align}
+    \frac{\mathrm{d}W}{\mathrm{d}z}=\frac{Q_{s}}{h}\frac{\sinh\frac{\pi}{h}z}{\cosh\frac{\pi}{h}z-\cosh\frac{\pi}{h}z_{s}}
+\end{align}
+速度场为
+\begin{align}
+    u&=\Re\left(\frac{\mathrm{d}W}{\mathrm{d}z}\right)\\
+    v&=-\Im\left(\frac{\mathrm{d}W}{\mathrm{d}z}\right)
+\end{align}
+速度场中速度的大小的表达式
+\begin{align}
+    \left|\frac{\mathrm{d}W}{\mathrm{d}z}\right|&=\left|\frac{Q_{s}}{h}\frac{\sinh Az}{f(z)}\right|\\
+    &=\left|\frac{Q_{s}}{h}\frac{\sinh(Ax+iAy)}{(\cosh Ax\cos Ay+\cosh Ax_{s})+i\sinh AX\sinh Ay}\right|\\
+    &=\frac{Q_{s}}{h}\left|\frac{\sinh Ax\cos Ay+i\cosh Ax\sin Ay}{(\cosh Ax\cos Ay+\cosh Ax_{s})+i\sinh Ax\sinh Ay}\right|\\
+    &=\frac{Q_{s}}{h}\sqrt{\frac{                        \sinh^2(Ax)\cos^2(Ay) + \cosh^2(Ax)\sin^2(Ay)}{                        \left[ \cosh(Ax)\cos(Ay) + \cosh(Ax_s) \right]^2 + \sinh^2(Ax)\sin^2(Ay)}}
+\end{align}
+
+\subsubsection*{速度场解析表达式推导}
+设$A=\frac{\pi}{h},f(z)=\cosh Az-\cosh Az_{s}$，则原复势表示为$W(z)=\frac{Q_{s}}{\pi}\ln f(z)$。
+想要得到速度场的解析表达式，就需要将复速度分解为实部与虚部，或者将复势分解，得到速度势函数、流函数的表达式，再分别求导。
+
+显然，复势是一个复合的复变函数，想要得出其实部虚部的具体表达式，就需要给出$f(z)$的实部与虚部表达式。
+由双曲函数的性质及复数的运算律，有：
+\begin{align*}
+    f(z)&=\cosh (Az)-\cosh (Az_{s})\\
+        &=\cosh Az+\cosh Ax_{s}\\
+        &=(\cosh Ax\cos Ay+\cosh Ax_{s})+i \sinh Ax\sin Ay
+\end{align*}
+由于$\cosh(a+i\pi=-\cosh a)$，有$\cosh Az_{s}=-\cosh Ax_{s}$，这简化了$f(z)$的具体表达形式，得出
+\begin{align}
+    \Re [f(z)]&=\cosh Ax\cos Ay+\cosh Ax_{s}\\
+    \Im [f(z)]&=\sinh Ax\sin Ay
+\end{align}
+
+这样就有了$f(z)$的模长和主值辐角的表达式
+\begin{align}
+    |f(z)|&=\sqrt{(\cosh Ax\cos Ay+\cosh Ax_{s})^{2}+(\sinh Ax\sin Ay)^{2}}\\
+    \arg f(z) &= \arctan\left(\frac{\sinh Ax\sin Ay}{\cosh Ax\cos Ay+\cosh Ax_{s}}\right)
+\end{align}
+
+流动复势$W(z)$是一个由$\ln(\cdot)$和$\cosh(\cdot)$复合构成的复变函数，其多值性主要来自$\ln$，并可以通过极坐标形式分解得到速度势与流函数，写为
+\begin{align}
+    W(z)=\frac{Q_{s}}{\pi}[\ln|f(z)|+i\arg f(z)]
+\end{align}
+
+
+流动复势又可以写为流函数与势函数的形式，$W(z)=\phi(x,y)+i\psi(x,y)$，则流动速度势函数、流函数表示为
+\begin{align}
+    \phi(z) = \frac{Q_{s}}{\pi}\ln|f(z)|\\
+    \psi(z) = \frac{Q_{s}}{\pi}\arg f(z)
+\end{align}
+
+
+
+
+

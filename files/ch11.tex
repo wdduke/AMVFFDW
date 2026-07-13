@@ -1,0 +1,68 @@
+\section{壁射流量纲分析}
+
+物理参量：
+\begin{enumerate}
+    \item $B$：射流出口宽度
+    \item $S$：射流偏移长度
+    \item $H$：壁面高度
+    \item $U_{0}$：初始平均速度
+    \item $\rho$：流体密度
+    \item $\mu$：流体动力黏度系数
+\end{enumerate}
+
+分离高度表示为$h$，壁射流问题中，定义一个量动量扩散通量$F$，则量纲分析问题为确定分离高度与物理参量之间的关系
+\begin{align*}
+    h&=f(B,S,H,U_{0},\rho,\mu)\\
+    F&=g(B,S,H,U_{0},\rho,\mu)
+\end{align*}
+
+基本量纲有3个，分别是$\mathrm{M},\mathrm{L},\mathrm{T}$，无量纲$\Pi$的个数是$k=7-3=4$，选择$B,U_{0},\rho$作为重复参量。（不选做重复参量的理由：不选因变量，不选无量纲的参量，不选包含所有基本量纲的参量）
+
+列量纲方程组：
+\begin{align}
+    \mathrm{dim}\Pi_{1}&=\mathrm{dim}(hB^{\alpha_{1}}U_{0}^{\beta_{1}}\rho^{\gamma_{1}})\\
+    \mathrm{dim}\Pi_{2}&=\mathrm{dim}(HB^{\alpha_{2}}U_{0}^{\beta_{2}}\rho^{\gamma_{2}})\\
+    \mathrm{dim}\Pi_{3}&=\mathrm{dim}(SB^{\alpha_{3}}U_{0}^{\beta_{3}}\rho^{\gamma_{3}})\\
+    \mathrm{dim}\Pi_{4}&=\mathrm{dim}(\mu B^{\alpha_{4}}U_{0}^{\beta_{4}}\rho^{\gamma_{4}})\\
+    \mathrm{dim}\Pi_{5}&=\mathrm{dim}(F B^{\alpha_{5}}U_{0}^{\beta_{5}}\rho^{\gamma_{5}})
+\end{align}
+
+根据参量的量纲表
+\begin{table}[]
+	\centering
+	\begin{tabular}{cccccccc}
+		 $F$& $h$&  $B$&  $S$&  $H$&  $U_{0}$&  $\rho$& $\mu$  \\
+		 $\mathrm{ML^{2}T^{-3}}$&$\mathrm{L}$&  $\mathrm{L}$&  $\mathrm{L}$&  $\mathrm{L}$&  $\mathrm{LT^{-1}}$&  $\mathrm{ML^{-3}}$&$\mathrm{ML^{-1}T^{-1}}$  \\
+	\end{tabular}
+	\caption{参量量纲表}
+	\label{tab:my-table}
+\end{table}
+
+得出各无量纲量的重复参量的幂次
+\begin{align*}
+    \alpha_{1}&=-1,\beta_{1}=0,\gamma_{1}=0\\
+    \alpha_{2}&=-1,\beta_{2}=0,\gamma_{2}=0\\
+    \alpha_{3}&=-1,\beta_{3}=0,\gamma_{3}=0\\
+    \alpha_{4}&=-1,\beta_{4}=-1,\gamma_{4}=-1\\
+    \alpha_{5}&=-2,\beta_{5}=-3,\gamma_{5}=-1
+\end{align*}
+
+得出无量纲量：
+\begin{align}
+    \Pi_{1}&=\frac{h}{B}=\lambda\\
+    \Pi_{2}&=\frac{H}{B}=\lambda_{h}\\
+    \Pi_{3}&=\frac{S}{B}=\lambda_{s}\\
+    \Pi_{4}&=\frac{\mu }{U_{0}\rho B}=\frac{1}{Re}\\
+    \Pi_{5}&=\frac{F }{U_{0}^{3}\rho B^{2}}=\phi_{f}
+\end{align}
+
+从而分离距离的问题关系式为：
+\begin{align}
+    \lambda=f(\lambda_{h},\lambda_{s},Re)
+\end{align}
+动量扩散通量的问题关系式为
+\begin{align}
+    \phi_{f}=g(\lambda_{h},\lambda_{s},Re)
+\end{align}
+
+当射流开口与壁面相邻时，即$\lambda_{s}=0$，式子变为$\lambda=f(\lambda_{h},Re),\phi_{f}=g(\lambda_{h},Re)$

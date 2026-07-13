@@ -1,0 +1,169 @@
+
+\section{拐角涡静止条件的推导过程}
+
+考虑一个拐角区域中的复势函数，其形式为：
+\begin{align}
+    W(z)=\frac{\Gamma}{2\pi i}\left[\ln(z^{c}-z_{0}^{c})-\ln(z^{c}-\bar{z}_{0}^{c})\right]-Sz^{c}
+\end{align}
+对应的复速度为：
+\begin{align}
+    \frac{\mathrm{d}W}{\mathrm{d}z}=\frac{\Gamma}{2\pi i}cz^{c-1}\left(\frac{1}{z^{c}-z_{0}^{c}}-\frac{1}{z^{c}-\bar{z}_{0}^{c}}\right)-Scz^{c-1}
+\end{align}
+
+当关注点 $z = z_0$ 处的速度时，复速度中的第一项显然具有奇性，因此需对其展开分析，以剔除点涡自身的自感应贡献，仅保留由边界或其他结构诱导的有限速度。
+
+\subsubsection{奇异性分析}
+
+定义函数：
+\[
+g(z) = \frac{cz^{c-1}}{z^{c}-z_{0}^{c}}
+\]
+考察其在 $z = z_0$ 的邻域内的展开情形。设 $z = z_0 + \epsilon$，其中 $\epsilon \to 0$，根据复幂函数的泰勒展开，有：
+\begin{align*}
+    z^{c} &= (z_{0}+\epsilon)^{c} \\
+    &= z_{0}^{c} + cz_{0}^{c-1}\epsilon + \frac{c(c-1)}{2}z_{0}^{c-2}\epsilon^{2} + \cdots
+\end{align*}
+
+代入 $g(z)$ 得：
+\begin{align*}
+    g(z) &= \frac{c\left[z_{0}^{c-1}+(c-1)z_{0}^{c-2}\epsilon+\cdots\right]}{cz_{0}^{c-1}\epsilon+\frac{c(c-1)}{2}z_{0}^{c-2}\epsilon^{2}+\cdots} \\
+    &= \frac{1+\frac{c-1}{z_{0}}\epsilon+\cdots}{\epsilon+\frac{c-1}{2z_{0}}\epsilon^{2}+\cdots} \\
+    &= \frac{1+\frac{c-1}{z_{0}}\epsilon+\cdots}{\epsilon\left(1+\frac{c-1}{2z_{0}}\epsilon+\cdots\right)} \\
+    &= \frac{1}{\epsilon} \cdot \left(1 + \frac{c-1}{z_{0}}\epsilon + \cdots \right) \cdot \left[1 - \frac{c-1}{2z_{0}}\epsilon + \left(\frac{c-1}{2z_0}\epsilon\right)^2 + \cdots \right]
+\end{align*}
+
+利用几何级数展开公式：
+\[
+\frac{1}{1+x} = 1 - x + x^2 - x^3 + \cdots \quad (|x|<1)
+\]
+并保留到一阶项，得：
+\begin{align}
+    g(z) = \frac{1}{\epsilon} + \frac{c-1}{2z_{0}} + \mathcal{O}(\epsilon)
+\end{align}
+
+其中第一项 $1/\epsilon$ 为点涡自身的自感应速度，具有不可去除的奇性；而第二项 $\frac{c-1}{2z_0}$ 则代表了由于几何变换及边界条件所引入的有限诱导速度，应予以保留。
+
+因此，去除奇异性之后，在 $z=z_0$ 处复速度可表示为：
+\begin{align}
+    \left.\frac{\mathrm{d}W}{\mathrm{d}z}\right|_{z=z_{0}} = \frac{\Gamma}{2\pi i} \left( \frac{c-1}{2z_0} - \frac{cz_0^{c-1}}{z_0^{c} - \bar{z}_0^{c}} \right) - Scz_0^{c-1}
+\end{align}
+
+\subsubsection{静止条件与位置解}
+
+考虑点涡在复势场中保持静止的条件，即在该点处的复速度为零。回顾上一节去除奇异性的结果，点 $z_0$ 处的复速度为：
+\begin{align}
+    \left.\frac{\mathrm{d}W}{\mathrm{d}z}\right|_{z=z_0} = \frac{\Gamma}{2\pi i} \left( \frac{c-1}{2z_0} - \frac{c z_0^{c-1}}{z_0^c - \bar{z}_0^c} \right) - S c z_0^{c-1}
+\end{align}
+
+令其为零，得到点涡在拐角中静止的必要条件为：
+\begin{align}
+    \boxed{
+    \frac{\Gamma}{2\pi i} \left[ \frac{c-1}{2z_0} - \frac{c z_0^{c-1}}{z_0^c - \bar{z}_0^c} \right] = S c z_0^{c-1}
+    }
+\end{align}
+
+这是一个关于复数变量 $z_0$ 的非线性方程，若不作任何限制，无法求得解析解。然而，在一个重要的对称情形下，该方程可以显式求解。
+
+\paragraph{特例：对称结构下的解析解}
+
+设点涡位于拐角的角平分线上，则有：
+\[
+\boxed{ \bar{z}_0 = -z_0 }
+\]
+这对应着一种典型的几何对称配置，如当拐角夹角 $\theta_c = \pi$ 时，角平分线为 $y$ 轴，点涡位于纯虚轴上。
+
+在此条件下，
+\begin{align*}
+    z_0^c - \bar{z}_0^c &= z_0^c - (-z_0)^c = z_0^c - (-1)^c z_0^c = z_0^c[1 - (-1)^c]
+\end{align*}
+
+当 $c$ 非整数时，$(-1)^c$ 为复数，因此上述差值为纯虚数，从而可避免共轭项的复杂影响。此时代入静止条件方程，可得出点涡位置的解析表达式为：
+\begin{align}
+    \boxed{
+    z_0 = \left( \frac{i\Gamma}{4\pi S c} \right)^{1/c}
+    }
+\end{align}
+
+该表达式给出了点涡在拐角几何中处于平衡位置所需满足的条件，具体位置依赖于涡强度 $\Gamma$、角度参数 $c$ 以及剪切流强度 $S$，方向沿角平分线。
+
+\paragraph{几何解释}
+
+上述解意味着点涡在角平分线方向（如 $y$ 轴）上达到静止，尤其当 $z_0$ 为纯虚数时，满足 $\bar{z}_0 = -z_0$。这是由于角平分线两侧的边界诱导速度刚好对称抵消，从而仅保留轴向诱导量。
+
+这种配置在文献中被称为 “hollow vortex at corner”，广泛出现在拐角分离流、剪切再会合等经典构型分析中（见图~\ref{fig:corner_vortex}）。
+
+\paragraph{一般情况的不可解析性}
+
+若不作上述对称假设，$z_0$ 与 $\bar{z}_0$ 不再呈简单对称关系，方程右边包含复杂的共轭耦合项，无法显式求解 $z_0$。此时只能借助数值方法求解该非线性复方程，可参考后续“一般解结构分析”部分的推导与求解策略。
+
+\subsubsection{一般形式的静止条件与结构分析}
+
+前节中我们在特定对称假设（$\bar{z}_0 = -z_0$）下得到了点涡平衡位置的解析表达式。然而，在更一般的情形中，$z_0$ 可以是任意复数，静止条件方程无法再直接简化为代数方程。下面我们对其一般结构进行分析。
+
+回顾静止条件的复速度表达式：
+\begin{align}
+    \left.\frac{\mathrm{d}W}{\mathrm{d}z}\right|_{z=z_0} = \frac{\Gamma}{2\pi i} \left( \frac{c-1}{2z_0} - \frac{c z_0^{c-1}}{z_0^c - \bar{z}_0^c} \right) - S c z_0^{c-1}
+\end{align}
+令该复速度为零，得到点涡静止所满足的条件为：
+\begin{align}
+    \boxed{
+    \frac{\Gamma}{2\pi i} \left( \frac{c-1}{2z_0} - \frac{c z_0^{c-1}}{z_0^c - \bar{z}_0^c} \right) = S c z_0^{c-1}
+    }
+\end{align}
+
+为进一步分析该方程结构，令 $z_0 = r e^{i\theta}$，其中 $r > 0$，$\theta \in \mathbb{R}$，则有：
+\begin{align*}
+    z_0^c &= r^c e^{ic\theta}, \qquad \bar{z}_0^c = r^c e^{-ic\theta}, \\
+    z_0^c - \bar{z}_0^c &= 2i r^c \sin(c\theta), \\
+    z_0^{c-1} &= r^{c-1} e^{i(c-1)\theta}, \qquad z_0 = r e^{i\theta}.
+\end{align*}
+代入静止条件后，复速度方程可重写为：
+\begin{align}
+    \frac{\Gamma}{2\pi i} \left( \frac{c-1}{2r} e^{-i\theta} - \frac{c e^{i(c-1)\theta}}{2i r \sin(c\theta)} \right) = S c r^{c-1} e^{i(c-1)\theta}
+\end{align}
+
+上式为一个复数非线性方程，未知量为极坐标变量 $(r, \theta)$。其显然包含幂函数与三角函数，并带有共轭项，因而难以用解析方法求解。
+
+\paragraph{结构总结：}
+该静止条件等价于如下形式的复数方程：
+\begin{align}
+    \boxed{
+    \frac{A_1 e^{-i\theta} - A_2 e^{i(c-1)\theta}}{r} = A_3 r^{c-1} e^{i(c-1)\theta}
+    }
+\end{align}
+其中
+\[
+A_1 = \frac{\Gamma(c-1)}{4\pi i}, \quad
+A_2 = \frac{\Gamma c}{4\pi \sin(c\theta)}, \quad
+A_3 = S c
+\]
+此结构反映出：在一般情况下，$z_0$ 的模与辐角耦合地决定涡的平衡位置，不能通过代数方法解出。
+
+% \paragraph{数值求解建议：}
+% 为获得 $z_0$ 的数值解，可使用基于复变量的非线性方程求解器（如 Newton-Raphson 或 SciPy 的 \texttt{root} 方法）。设 $z_0 = x + iy$，将上式拆为实部与虚部的两个方程进行求解。例如，可用以下 Python 脚本实现数值求解：
+
+% \begin{lstlisting}[language=Python, caption=Python 中用 SciPy 求解点涡平衡位置]
+% from scipy.optimize import root
+% import numpy as np
+
+% def residual(z):
+%     z = z[0] + 1j * z[1]
+%     Gamma = 1.0
+%     c = 1.5
+%     S = 1.0
+%     term1 = (c-1)/(2*z)
+%     term2 = c*z**(c-1)/(z**c - np.conj(z)**c)
+%     lhs = (Gamma/(2*np.pi*1j))*(term1 - term2)
+%     rhs = S*c*z**(c-1)
+%     res = lhs - rhs
+%     return [res.real, res.imag]
+
+% sol = root(residual, [0.1, 0.5])
+% z0 = sol.x[0] + 1j * sol.x[1]
+% print("z0 =", z0)
+% \end{lstlisting}
+
+% 该程序可根据设定的参数 $\Gamma$、$c$ 和 $S$ 数值地逼近满足静止条件的点涡位置。
+
+\paragraph{结论：} 一般情形下，点涡在拐角结构中的平衡位置必须通过数值方法求解。若进一步考虑边界对称性或背景流构型，可以结合物理对称性选取合适初值以提高数值解收敛性。
+

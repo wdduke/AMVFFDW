@@ -1,0 +1,349 @@
+
+\subsection*{壁射流的特征量分析与幂律形式的合理性}
+
+壁射流（laminar wall jet）问题中，经典的自相似分析方法依赖于一组适当的特征尺度来将偏微分方程简化为常微分方程。虽然文献中往往直接引入幂律形式的流函数 ansatz（如式(10.4)），但实际上这一 ansatz 的幂指数应来源于对积分不变量和尺度分析的系统推导。
+
+本文在此完整整理这一推导过程，说明幂律结构的物理与数学基础。
+
+\paragraph{(1) 问题背景与积分不变量}
+
+壁射流问题中的控制方程为边界层近似下的二维不可压粘性流动方程，其关键积分不变量为：
+
+\begin{equation}
+F=\rho\int_{0}^{\infty}u\left(\int_{y}^{\infty}uu\mathrm{d}y'\right)\mathrm{d}y = \text{常数},
+\end{equation}
+
+其中 \( u(x,y) \) 为沿壁面的流向速度。该不变量表示单位长度沿壁方向上的动量扩散势通量保持不变。我们期望利用该不变量推导出特征速度 \( U(x) \) 与特征长度 \( L(x) \) 随下游坐标 \( x \) 的变化规律。
+
+\paragraph{(2) 特征量假设与量纲平衡}
+
+设特征速度和特征长度分别满足幂律形式：
+
+\begin{equation}
+U(x) \sim x^p, \quad L(x) \sim x^q.
+\end{equation}
+
+则积分不变量可写为：
+
+\begin{equation}
+F \sim \rho U^3 L^2 \sim \rho x^{3p + 2q}.
+\end{equation}
+
+由 \( F \) 为常数可得约束条件：
+
+\begin{equation}
+3p + 2q = 0. \tag{A}
+\end{equation}
+
+另一方面，动量方程中的主导项为：
+
+\begin{equation}
+u \frac{\partial u}{\partial x} \sim \nu \frac{\partial^2 u}{\partial y^2}
+\Rightarrow \frac{U^2}{x} \sim \nu \frac{U}{L^2},
+\end{equation}
+
+即：
+
+\begin{equation}
+U \sim \frac{\nu x}{L^2} \Rightarrow x^p \sim \frac{\nu x}{x^{2q}} \Rightarrow p = 1 - 2q. \tag{B}
+\end{equation}
+
+联立(A)、(B)，解得：
+
+\begin{equation}
+q = \frac{3}{4}, \quad p = -\frac{1}{2}.
+\end{equation}
+
+因此，特征尺度随 \( x \) 变化为：
+
+\begin{equation}
+L(x) \sim x^{\frac{3}{4}}, \quad U(x) \sim x^{-\frac{1}{2}}.
+\end{equation}
+
+这表明随着壁向下游发展，速度逐渐减小，壁射流的厚度逐渐变厚。
+
+\paragraph{(3) 自相似变量与流函数 ansatz 的构造}
+
+为构造自相似解，引入自相似变量：
+
+\begin{equation}
+\eta = \frac{y}{L(x)} \sim \frac{y}{x^{3/4}},
+\end{equation}
+
+假设速度沿此变量仅有形状变化，写作：
+
+\begin{equation}
+u(x, y) = U(x) f(\eta) \sim x^{-1/2} f\left( \frac{y}{x^{3/4}} \right).
+\end{equation}
+
+为满足连续性方程，可引入流函数：
+
+\begin{equation}
+u = \frac{\partial \psi}{\partial y}, \quad v = -\frac{\partial \psi}{\partial x},
+\end{equation}
+
+设流函数形式为幂律 ansatz：
+
+\begin{equation}
+\psi(x, y) = x^a \Phi(\eta), \quad \eta = \frac{y}{x^b}.
+\end{equation}
+
+则导数关系为：
+
+\begin{align}
+u &= \frac{\partial \psi}{\partial y} = x^a \Phi'(\eta) \cdot \frac{1}{x^b} = x^{a - b} \Phi'(\eta), \\
+\Rightarrow U(x) &\sim x^{a - b} \Rightarrow a - b = -\frac{1}{2}. \tag{C}
+\end{align}
+
+又由 \( \eta = y / x^b \Rightarrow b = \frac{3}{4} \)，代入(C)得：
+
+\begin{equation}
+a = \frac{1}{4}.
+\end{equation}
+
+从而最终 ansatz 可写为：
+
+\begin{equation}
+\psi(x,y) = x^{1/4}\Phi\left( \frac{y}{x^{3/4}} \right),
+\end{equation}
+
+这正是壁射流中常见的自相似形式。尽管文献中常见的式(10.4)直接给出幂律形式，但它并非凭空设定，而是可由上述分析严格推导而得。
+
+\paragraph{(4) 总结}
+
+壁射流问题中，特征速度和厚度随下游距离 \( x \) 呈幂律变化，分别为 \( U(x) \sim x^{-1/2} \)，\( L(x) \sim x^{3/4} \)。在此基础上构造自相似变量与流函数 ansatz，可将控制方程化为关于无量纲变量的常微分方程，简化求解过程。幂律指数的选择不是任意的，而是由积分守恒与量纲一致性严格决定的。
+
+
+\paragraph{(5) 附}
+\subsection{幂函数分布}
+二维黏性流动问题的动量表达式：
+\begin{align}
+    \frac{\partial \psi}{\partial y}\frac{\partial^{2} \psi}{\partial x\partial y} - \frac{\partial \psi}{\partial x}\frac{\partial^{2} \psi}{\partial y^{2}}=u_{e}\frac{\mathrm{d}u_{e}}{\mathrm{d}x}+\nu\frac{\partial^{3} \psi}{\partial y^{3}}
+\end{align}
+
+设相似解的局部特征尺度为$U(x)$、$L(x)$，相似解定义为：
+\begin{align}
+    \frac{\psi}{UL}&=f(\frac{y}{L})\\
+    \eta&=\frac{y}{L}
+\end{align}
+
+将相似解代入动量方程，则其中的组件表示为：
+
+
+\begin{align}
+    Uf'\left (f'\frac{\mathrm{d}U}{\mathrm{d}x}-\frac{Uy}{L^{2}}f''\frac{\mathrm{d}L}{\mathrm{d}x} 
+    \right)-\frac{Uf''}{L}\left[f\left(L\frac{\mathrm{d}U}{\mathrm{d}x}+U\frac{\mathrm{d}L}{\mathrm{d}x}\right)-\frac{Uy}{L}f'\frac{\mathrm{d}L}{\mathrm{d}x}
+    \right]=u_{e}\frac{\mathrm{d}u_{e}}{\mathrm{d}x}+\nu\frac{Uf'''}{L^{2}}
+\end{align}
+
+展开合并各项后，使$f$最高阶导数项系数为1。
+
+
+若要满足相似性条件，式(\ref{eq-ode})必须转化为仅关于相似变量$\eta$的函数方程，这意味着方程中的所有系数必须为常数，而不能显式地依赖于自变量$x$。
+
+% 注释掉详细说明
+\discard{
+\begin{verbatim}
+具体而言，需要满足以下两个数学要求：
+\begin{enumerate}
+\item \textbf{系数归一化条件}：方程中各项的非定常系数必须能够相互抵消或归化为常数。这要求：
+    \begin{enumerate}
+    \item[(a)] 组合系数$\dfrac{L^2 u_e}{\nu U}$和$\dfrac{L^2}{\nu}$必须保持为常数，或者它们的$x$依赖性能够相互抵消；
+    \item[(b)] 组合项$\left(\dfrac{LU}{\nu}\right)\left(\dfrac{\mathrm{d}L}{\mathrm{d}x}\right)$必须为常数，或者其$x$依赖性能够被方程中其他项的相应变化所补偿。
+    \end{enumerate}
+\item \textbf{自相似相容条件}：所有含$x$显式依赖的项必须满足特定的比例关系，使得通过适当的变量替换后，方程可以转化为仅关于相似变量$\eta$的常微分方程。这通常要求：
+    \begin{enumerate}
+        \item[(a)] 外部速度$u_e(x)$和特征长度$L(x)$满足特定的幂律关系；
+        \item[(b)] 特征速度$U(x)$与$u_e(x)$之间存在确定的函数关系。
+    \end{enumerate}
+\end{enumerate}
+只有当这些条件同时满足时，原始偏微分方程才能通过相似变换转化为常微分方程，从而获得自相似解。
+\end{verbatim}
+}
+
+即有：
+
+
+幂律假设是相似解存在的条件之一，因此，设：
+\begin{align}
+    U&=U_{0}x^{a}\\
+    L&=L_{0}x^{b}\\
+    u_{e}&=u_{e0}x^{c}
+\end{align}
+
+整理一下：
+\begin{align}
+    x=\left(\frac{U}{U_{0}}\right)^{1/a}=\left(\frac{L}{L_{0}}\right)^{1/b}=\left(\frac{u_{e}}{u_{e0}}\right)^{1/c}
+\end{align}
+
+相应的各导数表示为：
+\begin{align}
+        \frac{\mathrm{d}U}{\mathrm{d}x}&=U_{0}ax^{a-1}\\
+        \frac{\mathrm{d}L}{\mathrm{d}x}&=L_{0}bx^{b-1}\\
+        \frac{\mathrm{d}u_{e}}{\mathrm{d}x}&=u_{e0}cx^{c-1}
+\end{align}
+
+\begin{align}
+    \frac{(L_{0}x^{b})^{2}}{\nu}U_{0}ax^{a-1}&=C_{1}\\
+    \frac{U_{0}x^{a}L_{0}x^{b}}{\nu}L_{0}bx^{b-1}&=C_{2}\\
+    \frac{(L_{0}x^{b})^{2}}{\nu U_{0}x^{a}}u_{e0}x^{c}u_{e0}cx^{c-1}&=C_{2}
+\end{align}
+
+幂方程组
+\begin{align}
+    2b+a-1&=0\\
+    a+2b-1&=0\\
+    ab+2c-1-a&=0
+\end{align}
+
+解得：
+\begin{align}
+    a = 1-2b\\
+    c = 1-2b
+\end{align}
+由于这组方程不封闭，因此$b$的确定更多的条件。
+
+方法1，使用维度归一方法；方法2，引入守恒量确定$b$；方法3，对数法。
+
+\subsection*{对数法}
+由前面的结果我们有：
+\begin{align}
+    U&\sim x^{1-2b}\\
+    L&\sim x^{b}\\
+    u_{e}&\sim x^{1-2b}
+\end{align}
+两边取对数并将$U$、$u_{e}$用$L$表示：
+\begin{align}
+    \ln U\sim (1-2b)\ln x\quad\ln u_{e}\sim (1-2b)\ln x\quad\ln L\sim b\ln x\\
+    U \sim L^{\frac{1}{b}-2}\quad u_{e} \sim L^{\frac{1}{b}-2}\quad L\sim x^{b}
+\end{align} 
+
+则方程系数恒等式表示为：
+\begin{align}
+    \frac{L^{\frac{1}{b}-1}}{\nu}\frac{\mathrm{d}L}{\mathrm{d}x}=C_{2}\\
+    \frac{u_{e}^{\frac{b}{1-2b}}}{\nu}\frac{\mathrm{d}u_{e}}{\mathrm{d}x}=C_{3}
+\end{align}
+
+整理得：
+\begin{align}
+    \frac{b}{\nu}\frac{\mathrm{d}L^{1/b}}{\mathrm{d}x}=C_{2}\\
+    \frac{1-2b}{\nu(1-b)}\frac{\mathrm{d}u_{e}^{\frac{1-b}{1-2b}}}{\mathrm{d}x}=C_{3}
+\end{align}
+
+为了避免奇点，要求$b\neq0,b\neq1,b\neq\frac{1}{2}$。
+
+\discard{
+\begin{verbatim}
+    进一步地，为了满足前述的相似性条件，我们要求动量方程 \eqref{eq-ode} 中所有关于 $x$ 的依赖项最终转化为常数。我们已引入幂律假设：
+\begin{align}
+    U(x) &= U_0 x^a,\\
+    L(x) &= L_0 x^b,\\
+    u_e(x) &= u_{e0} x^c.
+\end{align}
+对应的导数表示为：
+\begin{align}
+    \frac{\mathrm{d}U}{\mathrm{d}x} &= a U_0 x^{a-1},\\
+    \frac{\mathrm{d}L}{\mathrm{d}x} &= b L_0 x^{b-1},\\
+    \frac{\mathrm{d}u_e}{\mathrm{d}x} &= c u_{e0} x^{c-1}.
+\end{align}
+
+将这些表达代入式 \eqref{eq-ode} 的三个系数中，要求其为常数，得到如下限制条件：
+\begin{align}
+    \frac{L^2}{\nu} \frac{\mathrm{d}U}{\mathrm{d}x} &\sim \frac{L_0^2 x^{2b} \cdot a U_0 x^{a-1}}{\nu} = \frac{a U_0 L_0^2}{\nu} x^{2b + a -1},\\
+    \frac{LU}{\nu} \frac{\mathrm{d}L}{\mathrm{d}x} &\sim \frac{L_0 x^b \cdot U_0 x^a \cdot b L_0 x^{b-1}}{\nu} = \frac{b U_0 L_0^2}{\nu} x^{a + 2b - 1},\\
+    \frac{L^2 u_e}{\nu U} \frac{\mathrm{d}u_e}{\mathrm{d}x} &\sim \frac{L_0^2 x^{2b} \cdot u_{e0} x^c \cdot c u_{e0} x^{c-1}}{\nu U_0 x^a} = \frac{c u_{e0}^2 L_0^2}{\nu U_0} x^{2b + 2c - 1 - a}.
+\end{align}
+
+为了上述各项为常数，其幂次必须为零，得到以下幂指数关系方程组：
+\begin{align}
+    2b + a - 1 &= 0, \label{eq:power1}\\
+    a + 2b - 1 &= 0, \label{eq:power2}\\
+    2b + 2c - 1 - a &= 0. \label{eq:power3}
+\end{align}
+
+由 \eqref{eq:power1} 与 \eqref{eq:power2} 相减可得：
+\begin{align}
+    (2b + a - 1) - (a + 2b - 1) = 0 \Rightarrow 0 = 0,
+\end{align}
+说明这两式线性相关。因此仅有两个独立约束方程。
+
+令
+\begin{align}
+    2b + a - 1 &= 0, \\
+    2b + 2c - 1 - a &= 0.
+\end{align}
+联立解得：
+\begin{align}
+    a &= 1 - 2b
+\end{align}
+
+\begin{align}
+    2b + 2c - 1 - (1 - 2b) = 0 \Rightarrow 4b + 2c - 2 = 0 \Rightarrow c = 1 - 2b.
+\end{align}
+
+因此幂指数的通解为：
+\begin{align}
+    a &= 1 - 2b,\\
+    c &= 1 - 2b,
+\end{align}
+其中 $b$ 为自由参数，代表相似解的特征长度随 $x$ 的幂次变化程度。
+
+\textbf{物理含义：}上述解表明，只要外部速度 $u_e(x)$ 和特征速度 $U(x)$ 的变化速率满足一定关系（即 $c = a$），并且特征长度满足适当的幂律变化，系统就可以归一为仅含 $\eta$ 的常微分方程，即存在相似解结构。
+
+常见特例是 Blasius 边界层流动，其外部速度为常数，即 $u_e = \cst$，对应 $c = 0$，由此得到：
+\begin{align}
+    c = 0 \Rightarrow b = \frac{1}{2},\quad a = 0.
+\end{align}
+即 $U = \cst$，$L \sim x^{1/2}$，符合经典边界层厚度 $\delta \sim x^{1/2}$ 的增长规律。
+\end{verbatim}
+}
+
+\subsection*{指数型相似解的幂次分析}
+
+在尝试构造相似解时，若假设特征速度 $U(x)$、特征长度 $L(x)$ 与外部速度 $u_e(x)$ 皆呈指数型变化：
+\begin{align}
+    U(x) &= U_0 e^{a x},\\
+    L(x) &= L_0 e^{b x},\\
+    u_e(x) &= u_{e0} e^{c x},
+\end{align}
+则它们的导数分别为：
+\begin{align}
+    \frac{\mathrm{d}U}{\mathrm{d}x} &= a U(x),\\
+    \frac{\mathrm{d}L}{\mathrm{d}x} &= b L(x),\\
+    \frac{\mathrm{d}u_e}{\mathrm{d}x} &= c u_e(x).
+\end{align}
+
+代入动量方程 \eqref{eq-ode} 的三项系数后，得到：
+\begin{align}
+    \frac{L^2}{\nu} \frac{\mathrm{d}U}{\mathrm{d}x} &= \frac{L_0^2 e^{2bx} \cdot a U_0 e^{a x}}{\nu}
+    = \frac{a U_0 L_0^2}{\nu} e^{(2b + a)x},\\
+    \frac{LU}{\nu} \frac{\mathrm{d}L}{\mathrm{d}x} &= \frac{L_0 e^{bx} \cdot U_0 e^{a x} \cdot b L_0 e^{bx}}{\nu}
+    = \frac{b U_0 L_0^2}{\nu} e^{(a + 2b)x},\\
+    \frac{L^2 u_e}{\nu U} \frac{\mathrm{d}u_e}{\mathrm{d}x}
+    &= \frac{L_0^2 e^{2bx} \cdot u_{e0} e^{cx} \cdot c u_{e0} e^{cx}}{\nu \cdot U_0 e^{a x}}
+    = \frac{c u_{e0}^2 L_0^2}{\nu U_0} e^{(2b + 2c - a)x}.
+\end{align}
+
+为了保持动量方程中各项系数为常数，必须要求每项的指数为零，从而得到如下指数匹配条件：
+\begin{align}
+    2b + a &= 0, \label{eq:exp1}\\
+    a + 2b &= 0, \label{eq:exp2}\\
+    2b + 2c - a &= 0. \label{eq:exp3}
+\end{align}
+
+注意到式 \eqref{eq:exp1} 与 \eqref{eq:exp2} 是相同的，因此仅有两个独立条件。我们令
+\begin{align}
+    a &= -2b, \\
+    \text{代入}~\eqref{eq:exp3}:\quad 2b + 2c - (-2b) &= 0 \Rightarrow 4b + 2c = 0 \Rightarrow c = -2b.
+\end{align}
+
+因此指数型解的参数满足如下关系：
+\begin{align}
+    a &= -2b,\\
+    c &= -2b.
+\end{align}
+
+也就是说，只要满足上述条件，动量方程即可转化为不含 $x$ 的常系数微分方程，存在相似解。自由参数 $b$ 控制了特征长度的指数增长速率。
+
+\textbf{物理含义：}该指数型解对应于一种指数加速或减速边界层流动。若 $b < 0$，则表示特征长度 $L(x)$ 随 $x$ 指数衰减，而速度项（$U(x)$、$u_e(x)$）呈指数增长，适用于某些快速膨胀流动的近似建模。
+

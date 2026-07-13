@@ -1,0 +1,65 @@
+\section*{壁射流的内禀尺度与自相似形式的合理性}
+
+我们从壁射流问题的积分不变量出发构造内禀尺度（intrinsic scales），并由此验证 Glauert 提出的流函数 ansatz 的合理性。
+
+\subsection*{1. 积分不变量}
+
+对于二维不可压缩壁射流，其动量守恒的积分形式不再是常规自由射流中的动量通量积分，而是如下形式的“二阶动量积分”：
+\begin{align}
+    F = \rho \int_0^\infty u(y) \left( \int_y^\infty u(y') \, dy' \right) dy
+\end{align}
+该量是壁射流的积分不变量，对应于沿壁面方向的动量通量向上传输的累积效应，其单位为：
+\begin{align}
+    [F] = \left[ \rho u \int u \, dy \cdot dy \right] = \frac{M}{L^3} \cdot \frac{L}{T} \cdot \frac{L^2}{T} \cdot L = \frac{ML^2}{T^3}
+\end{align}
+
+\subsection*{2. 基于 $F$ 构造内禀尺度}
+
+我们引入物理量 $\rho, \nu$ 及积分不变量 $F$，构造系统中唯一的特征尺度 $U$, $L$, $T$ 满足：
+\begin{align}
+    [F] = \frac{ML^2}{T^3}, \quad [\rho] = \frac{M}{L^3}, \quad [\nu] = \frac{L^2}{T}
+\end{align}
+
+通过维数分析解得：
+\begin{align}
+    L &= C_L \cdot \frac{\rho \nu^3}{F} \\
+    T &= C_T \cdot \frac{\rho^2 \nu^5}{F^2} \\
+    U &= \frac{L}{T} = C_U \cdot \frac{F}{\rho \nu^2}
+\end{align}
+其中 $C_L, C_T, C_U$ 为无量纲常数（可设为 1 进行简化处理），因此我们定义：
+\begin{align}
+    L = \frac{\rho \nu^3}{F}, \quad U = \frac{F}{\rho \nu^2}
+\end{align}
+进一步有：
+\begin{align}
+    \frac{UL}{\nu} = \frac{F}{\rho \nu^2} \cdot \frac{\rho \nu^3}{F} \cdot \frac{1}{\nu} = 1
+\end{align}
+这表明雷诺数为常数，是自相似结构成立的基础之一。
+
+\subsection*{3. 自相似形式的流函数}
+
+我们采用如下流函数 ansatz：
+\begin{align}
+    \psi = \left( \frac{\rho}{F \nu x} \right)^{1/4} f(\eta), \quad \eta = \left( \frac{\rho \nu}{F} \right)^{1/4} \frac{y}{x^{3/4}}
+\end{align}
+该 ansatz 的合理性来源如下：
+
+\begin{itemize}
+    \item 从维数分析上看，$\psi$ 的量纲为 $[UL]$，我们设其前因子 $\sim x^{-1/4}$ 可由 $F,\nu,\rho$ 与 $x$ 组合得到；
+    \item 相似变量 $\eta$ 是无量纲变量，其构造需将 $y$ 与 $x$ 建立比例联系；
+    \item $y/x^{3/4}$ 是唯一使得方程中 $\psi_{y}$, $\psi_{yy}$, $\psi_{yyy}$ 成为 $\eta$ 的函数的尺度选择；
+    \item 将该形式代入动量方程后，可完全归一化为关于 $f(\eta)$ 的常微分方程。
+\end{itemize}
+
+\subsection*{4. 关于 $x$ 的来源说明}
+
+尽管积分不变量 $F$ 本身不含 $x$，但壁射流的发展方向是沿 $x$ 延伸的，我们应理解为：
+
+\begin{itemize}
+    \item 积分不变量 $F$ 是一个保守量；
+    \item 在每个下游位置 $x$，局部速度剖面发生变化；
+    \item 自相似变量 $\eta \sim y / x^{3/4}$ 的构造引入了 $x$；
+    \item 因此，$x$ 的出现来自于假设自相似发展结构（非直接由 $F$ 中导出），并由 $F$ 保守条件限定尺度随 $x$ 的变化形式。
+\end{itemize}
+
+

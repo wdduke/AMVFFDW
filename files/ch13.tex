@@ -1,0 +1,93 @@
+
+\subsection{势流模型}
+
+考虑构造基于拐角流势流模型的局部贴附通风半经验公式
+
+\subsubsection{基本思想}
+贴附通风的房间内，气流从顶部送风口（宽度为$B$，送风速度为$U_{0}$）沿竖壁通过竖壁-地面拐角到地面流动，竖壁区与地面区表现为壁面射流流动特性。试验数据表明，竖直方向、水平方向轴线速度满足湍流假说的幂律关系，并且分别有半经验公式。
+\subsubsection{混合模型成立的假设}
+\begin{itemize}
+    \item 湍流流场在在竖壁和水平区的主流可近似满足势流方程（不可压缩、无旋），允许通过修正引入黏性和湍流效应。
+    \item 拐角流的势流模型提供基本流场结构，但需修正以匹配湍流理论推导的幂律关系以及试验结果。
+\end{itemize}
+\subsubsection{目标}
+\begin{itemize}
+    \item 从势流模型出发，构造流函数，通过实验数据修正，使速度分布和流线同时接近试验结果。
+    \item 推导统一公式，连接竖直和水平方向的流场，壁面单独处理平板射流。
+\end{itemize}
+\subsubsection{方法}
+\begin{itemize}
+    \item 保留势流模型的函数结构，引入修正项模拟实际的速度衰减
+    \item 参考半经验公式形式，结合试验数据，调整参数匹配幂律关系
+\end{itemize}
+
+
+\subsubsection{拐角流的势流模型（stagnation flow）}
+已知拐角流的复位势表达式为：
+\begin{align}
+            \label{eq:example}
+          W(z) &= \phi + i \psi \\
+          W(z) &= Az^{n}.
+\end{align}
+其中，$z=x+iy$为x-y坐标系下的复变量。
+
+当$n=2$时，即为流体绕过直角物面的势流表达式，相应的速度势函数、流函数、速度分量在Cartesian坐标系下的表示为：
+\begin{align}
+        \phi &= A((x-x_{0})^2-(y-y_{0})^2)\\
+        \psi &= 2A(x-x_{0})(y-y_{0})\\
+        u &= 2A(x-x_{0})\\
+        v &= -2A(y-y_{0})
+\end{align}
+其中，$A=\frac{U_{0}}{2H}$，$U_{0},H$分别为送风口风速、送风口距地面距离，$(x_{0},y_{0})$为拐角坐标，本例中$x_{0}=y_{0}=0$。
+
+因此，在实际通风房间中，竖向速度应为分速度$v$，水平速度应为分速度$u$。
+
+已知通风口中线坐标为$(x_{c}, H)$，因此过该点的势流流函数为$\psi_{c}=U_{0}x_{c}$，此流函数将做为半经验公式的参考依据。
+
+势流模型的局限性在于分速度均为线性分布，无法描述各自方向上因为黏性及湍流造成的衰减，因此需要进行修正，以符合实际的测量结果。
+
+\subsection{从势流模型推广到实际情况}
+\subsubsection{幂律关系与试验结果}
+根据已有的理论分析以及试验结果，竖直方向上，流动的轴线速度满足以下幂律关系以及半经验公式（怀疑，这是书上的结论）：
+\begin{align*}
+    &\frac{v_{m}(y')}{U_{0}}\sim \left(\frac{y'}{b}\right)^{-4/3}\text{幂律关系}\\
+    &\frac{v_{m}(y')}{u_{0}}=\frac{1}{0.01(\frac{y'}{b})^{1.11}+1}\text{半经验公式}
+\end{align*}
+当竖壁方向上流动已充分发展（$y'/b\gg 1$），由半经验公式得到：
+\begin{align*}
+    v_{m}(y')\approx 100U_{0}(\frac{y'}{b})^{-1.11}
+\end{align*}
+水平方向结论类似，略。
+
+\subsubsection{构造统一的流函数}
+基于势流流函数的形式，假设实际的流函数有如下形式
+\begin{align}
+    \psi=Ax^{m}y^{n}
+\end{align}
+基于此的速度分量分别为：
+\begin{align}
+        u &= Ax^{m}ny^{n-1}\\
+        v &= -Ay^{n}mx^{m-1}
+\end{align}
+关注中心流线$\psi_{c}$
+\begin{align*}
+    \psi_{c}&=Ax^{m}y^{n}\\
+    y&=\left(\frac{\psi_{c}}{A}\right)^{1/n}x^{-m/n}
+\end{align*}
+令送风中心处$(x_c, H)$新的流函数与势流流函数值相等，$\psi=\psi_{c}$，得
+\begin{align}
+    A&=\frac{U_{0}}{x_{c}^{m-1}H^{n}}\\
+    \psi &= U_{0}\left(\frac{x}{x_{c}}\right)^{m-1}x\left(\frac{y}{H}\right)^{n}
+\end{align}
+
+现在使用出口宽度$b$和风速$U_{0}$对速度分量表达式进行无量纲化：
+\begin{align}
+    \frac{u}{U_{0}}&=\frac{bn}{H}\left(\frac{x}{b}\right)^{m}\left(\frac{b}{x_{c}}\right)^{m-1}\left(\frac{y}{H}\right)^{n-1}\\
+    \frac{v}{U_{0}}&=-m\left(1-\frac{b}{H}\frac{y'}{b}\right)^{n}\left(\frac{x}{x_{c}}\right)^{m-1}
+\end{align}
+
+\paragraph{结论}
+
+拐角流势流模型的最大问题是无法正确描述室内通风气流的物理特性。\textcolor{red}{拐角流（stagnation flow）本质上是室内通风气流的局部线性化模型，可以反应拐角处的势流状态，是一种局部模型，局部之外的地方是理想化了的。}
+
+从边界层的分析过程中可以发现，射流问题与均匀流在边界层方面的处理存在重要区别，射流问题的核心动量结构来自于流动的自我演化，而均匀流边界层的动量来源是边界层之外的均匀流，这导致了两类流动对NS方程中压力项的不同处理方式，即射流类边界层忽略压力项，均匀流边界层由外部均匀流通过Bernoulli方程代替压力项。

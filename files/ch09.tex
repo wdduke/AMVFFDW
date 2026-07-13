@@ -1,0 +1,164 @@
+\section{存在压力梯度项的相似性分析}
+假设一个射流问题，流向为$x$，在$x=H$处存在竖直壁面。
+$(x,y)$坐标系下，设速度分量分别为$u(x,y),v(x,y)$，分别为$x,y$方向的分速度。
+\begin{align}
+    \frac{\partial u}{\partial x}+\frac{\partial v}{\partial y}&=0\\
+    u\frac{\partial u}{\partial x}+v\frac{\partial u}{\partial y}&=-\frac{1}{\rho}\frac{\partial p}{\partial x}+\nu\left(\frac{\partial^{2} u}{\partial x^{2}}+\frac{\partial^{2} u}{\partial y^{2}}\right)\\
+    u\frac{\partial v}{\partial x}+v\frac{\partial v}{\partial y}&=-\frac{1}{\rho}\frac{\partial p}{\partial y}+\nu\left(\frac{\partial^{2} v}{\partial x^{2}}+\frac{\partial^{2} v}{\partial y^{2}}\right)
+\end{align}
+
+引入流函数，则连续方程自动满足，动量方程表示为：
+\begin{align}
+    \frac{\partial \psi}{\partial y}\frac{\partial^{2} \psi}{\partial x\partial y}-\frac{\partial \psi}{\partial x}\frac{\partial^{2} \psi}{\partial y^{2}}&=-\frac{1}{\rho}\frac{\partial p}{\partial x}+\nu(\frac{\partial^{3} \psi}{\partial x^{2}\partial y}+\frac{\partial^{3} \psi}{\partial y^{3}})\\
+    \frac{\partial \psi}{\partial y}\frac{\partial^{2} \psi}{\partial x^{2}}-\frac{\partial \psi}{\partial x}\frac{\partial^{2} \psi}{\partial y\partial x}&=\frac{1}{\rho}\frac{\partial p}{\partial y}+\nu(\frac{\partial^{3} \psi}{\partial x^{3}}+\frac{\partial^{3} \psi}{\partial y^{2}\partial x})
+\end{align}
+
+引入边界层假设
+\begin{align}
+    \frac{\partial \psi}{\partial y}\frac{\partial^{2} \psi}{\partial x\partial y} - \frac{\partial \psi}{\partial x}\frac{\partial^{2} \psi}{\partial y^{2}}&=-\frac{1}{\rho}\frac{\partial p}{\partial x}+\nu\frac{\partial^{3} \psi}{\partial y^{3}}\\
+    \frac{\partial p}{\partial y}&=0
+\end{align}
+引入相似性假设，设局部特征尺度为$U(x),L(x),P(x)$，定义相似解的形式为：
+\begin{align}
+    \psi=ULf(\frac{y}{L})&=ULf(\eta)\\
+    p(x,y)&=Pg(\frac{y}{L})
+\end{align}
+
+分别计算相似解的微分：
+\begin{align}
+    \frac{\partial p}{\partial x}&=g\frac{\mathrm{d}P}{\mathrm{d}x}-g'\frac{Py}{L^{2}}\frac{\mathrm{d}L}{\mathrm{d}x}\\
+    \frac{\partial p}{\partial y}&=g'\frac{P}{L}=0\\
+    \text{则}：\frac{\partial p}{\partial x}&=g\frac{\mathrm{d}P}{\mathrm{d}x}
+\end{align}
+从这里可以得出$g=\cst$
+\begin{align}
+    u&=\frac{\partial \psi}{\partial y}=Uf'\\
+    v&=-\frac{\partial \psi}{\partial x}=f\left(\frac{\mathrm{d}U}{\mathrm{d}x}L+\frac{\mathrm{d}L}{\mathrm{d}x}U\right)-\frac{Uy}{L}\frac{\mathrm{d}L}{\mathrm{d}x}f'\\
+    \frac{\partial u}{\partial y}&=\frac{\partial^{2} \psi}{\partial x^{2}}=\frac{U}{L}f''\\
+    \frac{\partial u}{\partial x}&=\frac{\partial^{2} \psi}{\partial x\partial y}=f'\frac{\mathrm{d}U}{\mathrm{d}x}-\frac{Uy}{L^{2}}\frac{\mathrm{d}L}{\mathrm{d}x}f'\\
+    \frac{\partial^{2} u}{\partial y^{2}}&=\frac{\partial^{3} \psi}{\partial x^{3}}=\frac{U}{L^{2}}f'''
+\end{align}
+代入边界层动量方程中：
+\begin{align}
+    f'''+ff''\left(\frac{L^{2}}{\nu}\frac{\mathrm{d}U}{\mathrm{d}x}+\frac{UL}{\nu}\frac{\mathrm{d}L}{\mathrm{d}x}\right)-f'f'\frac{L^{2}}{\nu}\frac{\mathrm{d}U}{\mathrm{d}x}-\frac{L^{2}g}{U\mu}\frac{\mathrm{d} P}{\mathrm{d} x}=0
+\end{align}
+若要使相似解存在，则需要满足以下条件(自相似解存在的充分条件):
+\begin{align}
+    \frac{UL}{\nu}\frac{\mathrm{d}L}{\mathrm{d}x}=\alpha\\
+    \frac{L^{2}}{\nu}\frac{\mathrm{d}U}{\mathrm{d}x}=\beta\\
+    -\frac{L^{2}g}{U\mu}\frac{\mathrm{d} P}{\mathrm{d} x}=\gamma
+\end{align}
+其中，$\alpha,\beta,\gamma$为常数。
+
+则原ODE变为
+\begin{align}
+    \label{eq-ODE}
+    f'''+(\beta+\alpha)ff''-\beta f'f'+\gamma=0
+\end{align}
+条件方程组中(2)(3)相除得到：
+\begin{align}
+    -U\mathrm{d}U=\frac{\beta g}{\gamma \rho}\mathrm{d}P\\
+    P=-\frac{\gamma \rho}{2\beta g}U^{2}+P_{0}
+\end{align}
+该式表明，若希望在存在压强梯度的黏性射流问题中保持自相似结构成立，则压强与速度之间必须满足一个二次函数关系。
+
+\subsection{引入幂律假设}
+若假设局部特征尺度有以下形式：
+\begin{align}
+    U(x)=Ax^{m},L(x)=Bx^{n},P(x)=Cx^{k}
+\end{align}
+微分：
+\begin{align}
+    \frac{\mathrm{d}U}{\mathrm{d}x}&=Amx^{m-1}\\
+    \frac{\mathrm{d}L}{\mathrm{d}x}&=Bnx^{n-1}\\
+    \frac{\mathrm{d}P}{\mathrm{d}x}&=Ckx^{k-1}
+\end{align}
+代入条件方程组：
+\begin{align}
+    \frac{UL}{\nu}\frac{\mathrm{d}L}{\mathrm{d}x}&=\frac{AB^{2}n}{\nu}x^{m+2n-1}\\
+    \frac{L^{2}}{\nu}\frac{\mathrm{d}U}{\mathrm{d}x}&=\frac{AB^{2}m}{\nu}x^{m+2n-1}\\
+    -\frac{L^{2}g}{U\mu}\frac{\mathrm{d} P}{\mathrm{d}x}&=-\frac{CB^{2}gk}{\mu A}x^{2n+k-m-1}
+\end{align}
+需满足：
+\begin{align}
+    2n+m-1&=0\\
+    2n+k-m-1&=0
+\end{align}
+三个未知数两个方程，方程组不封闭，须继续引入新的条件封闭方程组。
+
+\subsection{引入守恒量}
+首先考虑自由射流情况。
+控制方程：
+\begin{align}
+    \frac{\partial u}{\partial x}+\frac{\partial v}{\partial y}&=0\\
+    \rho\left(u\frac{\partial u}{\partial x}+v\frac{\partial u}{\partial y}\right)&=-\frac{\partial p}{\partial x}+\mu\frac{\partial^{2} u}{\partial y^{2}}
+\end{align}
+边界条件：
+\begin{align}
+    y&=0, 0<x<H: u=0,v=0,\psi=0\\
+    y&=\pm\infty,0<x<H: u=0, \frac{\partial u}{\partial y}=0
+\end{align}
+对连续方程变形处理后代入边界层动量方程：
+\begin{align}
+    \rho u \frac{\partial u}{\partial x}+\rho u\frac{\partial v}{\partial y}&=0\\
+    \rho\left(\frac{\partial uu}{\partial x}+\frac{\partial uv}{\partial y}\right)&=-\frac{\partial p}{\partial x}+\mu\frac{\partial \tau}{\partial y}
+\end{align}
+
+对变形后动量方程沿射流截面从$-\infty$到$\infty$积分：
+\begin{align}
+    \rho\left(\int_{-\infty}^{\infty}\frac{\partial uu}{\partial x}\mathrm{d}y+\int_{-\infty}^{\infty}\frac{\partial uv}{\partial y}\mathrm{d}y\right)&=-\int_{-\infty}^{\infty}\frac{\partial p}{\partial x}\mathrm{d}y+\int_{-\infty}^{\infty}\mu\frac{\partial \tau}{\partial y}\mathrm{d}y
+\end{align}
+其中等式左右两边的第二项可以根据边界条件得出均为0，则简化后的方程为
+\begin{align}
+    \rho\frac{\mathrm{d}}{\mathrm{d}x}\int_{-\infty}^{\infty}(uu+p)\mathrm{d}y=0\\
+    \rho\int_{-\infty}^{\infty}(uu+p)\mathrm{d}y=\cst=J^{*}
+\end{align}
+若忽略x方向上的压力变换，则压力梯度项为零，上式退化为：
+\begin{align}
+     \rho\int_{-\infty}^{\infty}uu\mathrm{d}y=\cst=J
+\end{align}
+此为无压力梯度自由射流动量通量守恒表达式。
+
+由守恒量补充相似解成立的条件方程组。  
+自相似变量表示为：
+\begin{align}
+    u(x,y)&=U(x)f'(\eta)\\
+    p(x,y)&=P(x)g(\eta)\\
+    \eta&=\frac{y}{L(x)}\\
+    \mathrm{d}y&=L(x)\mathrm{d}\eta
+\end{align}
+代入守恒量定义式
+\begin{align}
+    \rho\int_{-\infty}^{\infty}(U^{2}f'^{2}+Pg)L\mathrm{d}\eta=\cst\\
+    \rho U^{2}L\int_{-\infty}^{\infty}f'^{2}\mathrm{d}\eta+\rho LP\int_{-\infty}^{\infty}g\mathrm{d}\eta=\cst\\
+    \rho U^{2}L\int_{-\infty}^{\infty}f'^{2}\mathrm{d}\eta-\rho L(\frac{\gamma \rho}{2\beta g}U^{2}-P_{0})\int_{-\infty}^{\infty}g\mathrm{d}\eta=\cst
+\end{align}
+由$U^{2}L=\cst$
+\begin{align}
+    (Ax^{m})^{2}Bx^{n}=\cst
+\end{align}
+得到守恒量推出的条件方程
+\begin{align}
+    2m+n=0
+\end{align}
+
+则全部的满足相似解以及自由射流守恒量的幂方程组为：
+\begin{align}
+    2n+m-1&=0\\
+    2n+k-m-1&=0\\
+    2m+n&=0
+\end{align}
+解得：
+\begin{align}
+    m=\frac{1}{5}\\
+    n=\frac{2}{5}\\
+    k=\frac{2}{5}
+\end{align}
+
+故考虑压力梯度的自由射流局部特征尺度为
+\begin{align}
+    U(x)\sim x^{\frac{1}{5}}\\
+    L(x)\sim x^{\frac{2}{5}}\\
+    P(x)\sim x^{\frac{2}{5}}
+\end{align}
+此时得到的结果发现，速度特征尺度随x方向递增，这是不符合物理实际的。因此这里我认为将压力项强行保留在射流自相似解问题的分析中是不合适的，这将导致无法获得正确的守恒表达式，无法得到符合物理实际的幂律关系。

@@ -1,0 +1,44 @@
+\section{无黏有旋问题的建模分析}
+ref：具有倾斜燃面的固体火箭发动机内流场解析解与数值解的分析比较
+
+引入假设：二维流动处于稳定状态；流体无粘性、等温不可压、流动有旋；
+
+Euler方程:
+\begin{align}
+    \frac{\partial u}{\partial x}+\frac{\partial v}{\partial y}&=0\\
+    u\frac{\partial u}{\partial x}+v\frac{\partial u}{\partial y}&=-\frac{1}{\rho}\frac{\partial p}{\partial x}\\
+    u\frac{\partial v}{\partial x}+v\frac{\partial v}{\partial y}&=-\frac{1}{\rho}\frac{\partial p}{\partial y}
+\end{align}
+假设所考虑的涡量由注入的气流动量与压力梯度变换产生，Euler方程反映了压力与涡量之间的关系。
+
+引入流函数和涡量，表达式为
+\begin{align}
+    u&=\frac{\partial \psi}{\partial y},v=-\frac{\partial \psi}{\partial x}\\
+    \Omega_{z}&=\frac{\partial v}{\partial x}-\frac{\partial u}{\partial y}=-\left(\frac{\partial^{2}\psi}{\partial x^{2}}+\frac{\partial^{2}\psi}{\partial y^{2}}\right)
+\end{align}
+
+涡量-对流扩散方程
+\begin{align}
+    u\frac{\partial \Omega_{z}}{\partial x}+v\frac{\partial \Omega_{z}}{\partial y}&=0\\
+    u\frac{\partial \Omega_{z}}{\partial x}+v\frac{\partial \Omega_{z}}{\partial y}&=\nu\left(\frac{\partial^{2}\Omega_{z}}{\partial x^{2}}+\frac{\partial^{2}\Omega_{z}}{\partial y^{2}}\right)
+\end{align}
+
+边界条件：
+\begin{align}
+    y=H, S_{L}<x<S_{L}+B_{in}: \quad \frac{\partial \psi}{\partial x}&=U_{0}\\ % 入口条件
+    y=H, S_{L}+B_{in}+L_{T}<x<L-S_{R}: \quad \frac{\partial \psi}{\partial y}&=0\\ % 出口条件
+    y=H, S_{L}+B<x<S_{L}+B+L_{T}: \quad \psi&=U_{0}B_{in}\\ % 顶边1
+    y=H, 0<x<S_{L}, S_{L}+B+L_{T}+B_{out}<x<L-S_{R}: \quad \psi&=0\\ % 顶边2
+    y=0, 0<x<L: \quad\psi&=0\\ % 底边
+    x=0, 0<y<H: \quad\psi&=0\\ % 左边
+    x=L, 0<y<H: \quad\psi&=0 % 右边
+\end{align}
+其中，符号分别表示
+\begin{itemize}
+    \item H：腔体高度
+    \item L：腔体宽度
+    \item $\mathrm{L_{T}}$：顶部出入口之间的距离
+    \item $\mathrm{S_{L},S_{R}}$：入口、出口分别距左右壁面距离
+    \item $\mathrm{U_{0}}$：入口流速
+    \item $\mathrm{B_{in},B_{out}}$：入口、出口的宽度
+\end{itemize}

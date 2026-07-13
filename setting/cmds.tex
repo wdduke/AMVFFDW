@@ -1,0 +1,22 @@
+% 定义的新命令
+
+% 平行线
+\newcommand{\nlines}[2][2]{%
+    \pgfmathsetmacro{\n}{#1} % 计算参数值
+    \foreach \x in {1,...,\n} {%
+        \setlength{\dimen0}{#2} % 将长度转换为dimen单位
+        \underline{\hspace{\dimen0}}\vskip 0.5em
+    }%
+}
+
+% 大写罗马数字,正体
+\newcommand{\romanNum}[1]{%
+  \uppercase\expandafter{\romannumeral #1}%
+}
+
+% 舍弃命令 不编译
+\newcommand{\discard}[1]{}
+
+% 常数符号
+\newcommand{\cst}{\mathrm{const}}
+\newcommand{\arccosh}{\operatorname{arch}}

@@ -1,0 +1,28 @@
+
+\section{NS方程变形推导}
+
+\begin{align}
+    &\nabla\cdot\mathbf{u}=0\\
+    &\frac{\partial \mathbf{u}}{\partial t}+\mathbf{u}\cdot\nabla \mathbf{u}=-\nabla p+\frac{1}{Re}\nabla^{2}\mathbf{u}
+\end{align}
+
+$p,Re$表示流体静压与雷诺数。
+
+由速度分解定理$\mathbf{u}=\nabla \phi+\nabla \times \bm{\Psi}$，其中$\phi,\bm{\Psi}$分别表示标量势和矢量势。（其中矢量势是与涡量相关的速度场部分，但不是涡量本身）。设$\bm{\Psi}=(\psi_{x},\psi_{y},\psi_{z})$，速度分量可写成如下形式：
+\begin{align}
+    u=\frac{\partial \phi}{\partial x}+\frac{\partial \psi_{z}}{\partial y}-\frac{\partial \psi_{y}}{\partial z}\\
+    v=\frac{\partial \phi}{\partial y}+\frac{\partial \psi_{x}}{\partial z}-\frac{\partial \psi_{z}}{\partial x}\\
+    w=\frac{\partial \phi}{\partial z}+\frac{\partial \psi_{y}}{\partial x}-\frac{\partial \psi_{x}}{\partial y}
+\end{align}
+
+涡量定义为$\bm{\omega}=\nabla\times\bm{u}$，则
+\begin{align*}
+    \bm{\omega}=\nabla\times(\nabla \phi+\nabla \times \bm{\Psi})\\
+     \bm{\omega}=\nabla\times\nabla \phi+\nabla\times(\nabla \times \bm{\Psi})\\
+     \bm{\omega}=\nabla\times\nabla \phi+\nabla(\nabla\cdot\bm{\Psi})-\nabla^{2}\bm{\Psi}
+\end{align*}
+由梯度的旋度为零，则$\bm{\omega}=\nabla(\nabla\cdot\bm{\Psi})-\nabla^{2}\bm{\Psi}$
+
+消除矢量势的非唯一性，则$\bm{\omega}=-\nabla^{2}\bm{\Psi}$
+此式便是Poisson方程
+

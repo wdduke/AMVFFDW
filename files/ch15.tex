@@ -1,0 +1,202 @@
+\section{拐角中的涡(Draft)}
+全局无黏+局部黏性等效的思想，局部涡与环量条件成立（库塔条件），即可精确模拟黏性流动问题中的某物理量变化规律。
+
+类似于Kutta-Joukowski假设在翼型尾缘处引入局部等效黏性机制以再现稳定升力的做法，在室内流动模拟中也可尝试在关键几何特征点（如出风口、热源边缘、尖角区域）布设势流奇点，通过调节其强度或环量以满足局部速度有限性或环量平衡，从而在无黏势流框架下有效再现真实的气流组织结构。
+
+(Inspired by the Kutta–Joukowski hypothesis, where viscosity is implicitly represented by enforcing a smooth trailing-edge condition in an otherwise inviscid potential flow, one may generalize this idea to indoor airflow modeling. By placing singularities such as point vortices or dipoles at critical geometric locations (e.g., diffuser corners, heat source edges), and adjusting their strength to satisfy local regularity or circulation constraints, it is possible to reconstruct stable indoor airflow patterns without explicitly resolving viscous effects.)
+
+空心涡 hollow vortex：是一个具有稳定状态、压力为常数的、具有有限面积的区域，围绕这个区域的环量不为零。其边界是一条流线，其上满足Bernoulli方程。空心涡边界上的压力为常数，则边界上的流体速度也为常数。这表明空心涡的边界是一个涡层。
+
+
+
+\subsection{拐角的SC变换}
+
+已知$w$平面上存在两个点，一个点坐标为有限值，另一个点坐标为无穷，内表示为$\alpha_{1}\pi,\alpha_{2}\pi$不妨假设$w_{2}=\infty$，相对应的上半平面$z$平面上，$z_{2}=\infty$，则由上半平面到$w$平面的映射表达式为
+\begin{align*}
+    f(z)&=A+C\int^{z}(\zeta-z_{1})^{\alpha_{1}}\\
+    f^{'}(z)&=C\alpha_{1}(z-z_{1})^{\alpha_{1}-1}
+\end{align*}
+这里需要对$\alpha_{1}$的取值情况进行分类讨论
+
+case1，当$\alpha_{1}<1$
+\begin{align*}
+    f^{'}(z)=\frac{C\alpha_{1}}{(z-z_{1})^{1-\alpha_{1}}}
+\end{align*}
+此时$z=z_{1}$为极点，导致$f^{'}(z_{1})=\infty$;
+
+case2，当$\alpha_{1}>1$
+\begin{align*}
+    f^{'}(z)=C\alpha_{1}(z-z_{1})^{\alpha_{1}-1}
+\end{align*}
+此时$z=z_{1}$为零点，导致$f^{'}(z_{1})=0$。
+
+第二种情况可以解释固体力学中尖锐拐角处容易产生应力集中的情况，因此舷窗的设计中没有尖锐拐角的存在。
+
+
+\subsection{壁面附近点涡的构造}
+假设在$z$平面的第一象限点$z_{0}$处存在逆时针旋转的点涡复势表示为：
+\begin{align*}
+    W(z)_{1} = \frac{\Gamma}{2\pi i}\ln(z-z_{0})
+\end{align*}
+其中环量$\Gamma$逆时针为正，顺时针为负。
+
+以$x$轴对称，第四象限的镜像涡环量变号，位置点变为共轭，表示为
+\begin{align*}
+    W(z)_{4}=\frac{-\Gamma}{2\pi i}\ln(z-\bar{z}_{0})
+\end{align*}
+
+以$y$轴对称，第二象限的镜像涡环量变号，位置点变为负共轭，表示为
+\begin{align*}
+    W(z)_{2}=\frac{-\Gamma}{2\pi i}\ln(z+\bar{z}_{0})
+\end{align*}
+
+第三象限的镜像涡是当同时以两个垂直的竖壁为壁面进行镜像操作得到的，相当于连续两次镜像操作中，镜像涡的镜像。
+
+
+\subsection{控制方程}
+\subsubsection{点涡速度控制方程（原始形式）}
+\begin{align}
+    \frac{\mathrm{d}z_{0}}{\mathrm{d}t}=\frac{\Gamma}{2\pi i}\left( \frac{c-1}{2z_{0}} - \frac{cz_{0}^{c-1}}{z_{0}^{c}-\bar{z}_{0}^{c}} \right) - Scz_{0}^{c-1}
+\end{align}
+
+\subsubsection{无量纲化过程}
+
+引入特征尺度：
+\[
+z_0 = L \tilde{z}_0, \quad t = T \tilde{t}
+\]
+
+代入后得：
+\begin{align*}
+    \frac{\mathrm{d}\tilde{z}_{0}}{\mathrm{d}\tilde{t}} &= \frac{T}{L} \cdot \frac{\Gamma}{2\pi i} \left( \frac{1}{L} \cdot \frac{c-1}{2\tilde{z}_0} - \frac{1}{L} \cdot \frac{c\tilde{z}_0^{c-1}}{\tilde{z}_0^c - \bar{\tilde{z}}_0^c} \right) - \frac{T}{L} SL^{c-1} c\tilde{z}_0^{c-1}
+\end{align*}
+
+令系数归一化：
+\begin{align*}
+    \frac{T\Gamma}{2\pi L^{2}}=1, \quad TSL^{c-2}=1
+\end{align*}
+
+解得：
+\begin{align*}
+    L = \left( \frac{\Gamma}{2\pi S} \right)^{1/c}, \quad
+    T = S^{-1} \left( \frac{\Gamma}{2\pi S} \right)^{\frac{2}{c} - 1}
+\end{align*}
+
+\subsubsection{无量纲点涡控制方程}
+
+\begin{align}
+    \boxed{
+    \frac{\mathrm{d}\tilde{z}_{0}}{\mathrm{d}\tilde{t}} = \frac{1}{i} \left( \frac{c-1}{2\tilde{z}_0} - \frac{c\tilde{z}_0^{c-1}}{\tilde{z}_0^c - \bar{\tilde{z}}_0^c} \right) - c \tilde{z}_0^{c-1}
+    }
+\end{align}
+
+\subsubsection{无量纲流场复速度表达式}
+
+\begin{align}
+    \frac{\mathrm{d}\tilde{W}}{\mathrm{d}\tilde{z}} = \frac{c}{i} \cdot \tilde{z}^{c-1} \left( \frac{1}{\tilde{z}^{c} - \tilde{z}_0^{c}} - \frac{1}{\tilde{z}^{c} - \bar{\tilde{z}}_0^{c}} \right) - c \tilde{z}^{c-1}
+\end{align}
+
+流体质点在复速度诱导下的路径为：
+\begin{align}
+    \frac{d\tilde{z}}{d\tilde{t}} = \left. \frac{d\tilde{W}}{d\tilde{z}} \right|_{\tilde{z}}
+\end{align}
+
+\subsection{点涡的运动分析}
+
+
+
+\subsection{拐角涡静止条件的推导过程}
+已知一个拐角附近的复势表示为
+\begin{align}
+    W(z)=\frac{\Gamma}{2\pi i}\left[\ln(z^{c}-z_{0}^{c})-\ln(z^{c}-\bar{z}_{0}^{c})\right]-Sz^{c}
+\end{align}
+复速度表示为
+\begin{align}
+    \frac{\mathrm{d}W}{\mathrm{d}z}=\frac{\Gamma}{2\pi i}cz^{c-1}\left(\frac{1}{z^{c}-z_{0}^{c}}-\frac{1}{z^{c}-\bar{z}_{0}^{c}}\right)-Scz^{c-1}
+\end{align}
+当考虑点$z=z_{0}$处的速度时，显然括号中第一项存在奇性，因此需要进行分析。
+
+点涡处的速度需要剔除其自感应的部分，保留流场中其他结构在这个点处的诱导速度。
+\subsubsection{奇异性分析}
+令$g(z)=\frac{cz^{c-1}}{z^{c}-z_{0}^{c}}$，现在分析复变函数$g(z)$在$z=z_{0}$的邻域展开的情况。
+
+令$z=z_{0}+\epsilon$，其中$\epsilon\rightarrow0$，则有如下关系：
+\begin{align*}
+    z^{c}&=(z_{0}+\epsilon)^{c}\\
+    &=z_{0}^{c}+cz_{0}^{c-1}\epsilon+\frac{c(c-1)}{2}z_{0}^{c-2}\epsilon^{2}+\cdots
+\end{align*}
+代入$g(z)$
+\begin{align*}
+    g(z)&=\frac{c[z_{0}^{c-1}+(c-1)z_{0}^{c-2}\epsilon+\cdots]}{cz_{0}^{c-1}\epsilon+\frac{c(c-1)}{2}z_{0}^{c-2}\epsilon^{2}+\cdots}\\
+    &=\frac{1+\frac{c-1}{z_{0}}\epsilon+\cdots}{\epsilon+\frac{c-1}{2z_{0}}\epsilon^{2}+\cdots}\\
+    &=\frac{1+\frac{c-1}{z_{0}}\epsilon+\cdots}{\epsilon(1+\frac{c-1}{2z_{0}}\epsilon+\cdots)}\\
+    &=\frac{1}{\epsilon}\cdot\left(1+\frac{c-1}{z_{0}}\epsilon+\cdots\right)\cdot\frac{1}{1+\frac{c-1}{2z_{0}}\epsilon+\cdots}
+\end{align*}
+
+根据如下式子在$|x|<1$的展开表达式
+\begin{align*}
+    \frac{1}{1+x}=1-x+x^{2}-x^{3}+\cdots
+\end{align*}
+
+继续代入$g(z)$
+\begin{align}
+    g(z)&=\frac{1}{\epsilon}\cdot\left(1+\frac{c-1}{z_{0}}\epsilon+\cdots\right)\cdot\left[1-\frac{c-1}{2z_{0}}\epsilon+\left(\frac{c-1}{z_{0}}\epsilon\right)^{2}+\cdots\right]\\
+    &=\frac{1}{\epsilon}\cdot\left[1+\frac{c-1}{2z_{0}}\epsilon-\frac{1}{2}\left(\frac{c-1}{z_{0}}\epsilon\right)^{2}+\frac{1}{3}\left(\frac{c-1}{z_{0}}\epsilon\right)^{3}+\cdots\right]
+\end{align}
+
+只保留一阶项
+\begin{align}
+    g(z)=\frac{1}{\epsilon}+\frac{c-1}{2z_{0}}
+\end{align}
+此时第一项即为点涡自感应的主奇点，应舍弃；第二项为几何变换导致的诱导速度，需要保留。
+
+综上，复速度在$z=z_{0}$可以表示为
+\begin{align}
+    \left.\frac{\mathrm{d}W}{\mathrm{d}z}\right|_{z=z_{0}}=\frac{\Gamma}{2\pi i}\left(\frac{c-1}{2z_{0}}-\frac{cz^{c-1}}{z^{c}-\bar{z}_{0}^{c}}\right)-Scz^{c-1}
+\end{align}
+
+
+$z_{0}$处的点涡成为静止的条件为该点处的流场复速度为零，即
+\begin{align}
+    \frac{\Gamma}{2\pi i}\left[\frac{c-1}{2z_{0}}-\frac{cz_{0}^{c-1}}{z_{0}^{c}-\bar{z_{0}}^{c}}\right]-Scz_{0}^{c-1}=0
+\end{align}
+得出$z_{0}$的表达式为：
+\begin{align}
+    z_{0}=\left(\frac{i\Gamma}{4\pi Sc}\right)^{\frac{1}{c}}
+\end{align}
+
+\subsection{共形映射与辅助平面构造}
+
+为简化物理平面（存在拐角结构）中的复势表达，我们引入如下两级共形映射：
+
+首先，定义辅助平面 $\xi$，将其映射到物理 $z$ 平面（拐角区域）：
+\begin{align}
+    z = f(\xi) = (-i\xi)^{\theta_c/\pi}
+\end{align}
+该映射将 $\xi$ 平面中的上半平面转换为角度为 $\theta_c$ 的楔形区域。函数 $f$ 在原点存在分支点，主值区的分支切线选择在右半平面，以避开物理区域。
+
+在 $\xi$ 平面中，构造的复势为：
+\begin{align}
+    W^{*}(\xi) = \frac{\Gamma}{2\pi i}\ln\left(\frac{\xi_0 - \xi}{\bar{\xi}_0 - \xi}\right) + iS\xi
+\end{align}
+其中第一项表示对称点涡诱导的速度场，第二项为背景剪切流。
+
+接着，将圆环区域映射到辅助平面 $\xi$ 上，引入未知变换：
+\begin{align}
+    \zeta = g(\xi) \quad \Leftrightarrow \quad \xi = g^{-1}(\zeta)
+\end{align}
+该映射将标准圆环 $\rho < |\zeta| < 1$ 映射至 $\xi$ 平面，排除了涡核及其镜像所在的内部区域。
+
+因此，从标准圆环 $\zeta$ 平面到物理 $z$ 平面的复合映射为：
+\begin{align}
+    h(\zeta) = f(g(\zeta))
+\end{align}
+对应的复势函数可表示为：
+\begin{align}
+    W(z) = W^{*}(\xi) = W^{**}(g^{-1}(\zeta))
+\end{align}
+
+
+
+
+

@@ -1,0 +1,204 @@
+\section{问题描述与动量方程}
+考虑二维黏性流动问题，其动量方程可由流函数形式表示为：
+\begin{align}
+    \frac{\partial \psi}{\partial y}\frac{\partial^{2} \psi}{\partial x\partial y} 
+    - \frac{\partial \psi}{\partial x}\frac{\partial^{2} \psi}{\partial y^{2}} 
+    = u_{e}\frac{\mathrm{d}u_{e}}{\mathrm{d}x} + \nu\frac{\partial^{3} \psi}{\partial y^{3}}
+\end{align}
+
+\section{自相似变换与缩放结构}
+设流函数满足相似解形式：
+\begin{align}
+    \psi(x,y) &= U(x)L(x)f(\eta), \\
+    \eta &= \frac{y}{L(x)},
+\end{align}
+其中 $U(x)$ 为局部特征速度，$L(x)$ 为距特征长度。代入后得到各项导数表达式：
+\begin{align}
+    \frac{\partial \psi}{\partial y} &= U f', \\
+    \frac{\partial \psi}{\partial x} &= f \left( L \frac{\mathrm{d}U}{\mathrm{d}x} + U \frac{\mathrm{d}L}{\mathrm{d}x} \right) 
+        - \frac{Uy}{L} f' \frac{\mathrm{d}L}{\mathrm{d}x}, \\
+    \frac{\partial^{2} \psi}{\partial x\partial y} &= f' \frac{\mathrm{d}U}{\mathrm{d}x} 
+        - \frac{Uy}{L^2} f'' \frac{\mathrm{d}L}{\mathrm{d}x}, \\
+    \frac{\partial^{2} \psi}{\partial y^2} &= \frac{U f''}{L}, \\
+    \frac{\partial^{3} \psi}{\partial y^3} &= \frac{U f'''}{L^2}.
+\end{align}
+
+将其代入动量方程并整理，得到标准形式：
+\begin{align}
+    f''' + \frac{L^2 u_e}{\nu U} \frac{\mathrm{d}u_e}{\mathrm{d}x}
+    = \frac{L^2}{\nu} \frac{\mathrm{d}U}{\mathrm{d}x} (f'^2 - f f'') 
+    - \frac{L U}{\nu} \frac{\mathrm{d}L}{\mathrm{d}x} f f''.
+    \label{eq:similarity_ode}
+\end{align}
+
+\section{自相似成立的必要条件}
+要使 \eqref{eq:similarity_ode} 成为纯 $\eta$ 的常微分方程（ODE），其各系数需为常数，因此需满足：
+\begin{align}
+    \frac{L^2 u_e}{\nu U} \frac{\mathrm{d}u_e}{\mathrm{d}x} &= \text{const}, \\
+    \frac{L^2}{\nu} \frac{\mathrm{d}U}{\mathrm{d}x} &= \text{const}, \\
+    \frac{LU}{\nu} \frac{\mathrm{d}L}{\mathrm{d}x} &= \text{const}.
+\end{align}
+
+\section{幂律假设与指数求解}
+令 $U(x)$、$L(x)$、$u_e(x)$ 满足幂律形式：
+\begin{align}
+    U(x) &= U_0 x^{a}, \\
+    L(x) &= L_0 x^{b}, \\
+    u_e(x) &= u_{e0} x^{c}.
+\end{align}
+由此得到各导数：
+\begin{align}
+    \frac{\mathrm{d}U}{\mathrm{d}x} &= a U_0 x^{a-1}, \\
+    \frac{\mathrm{d}L}{\mathrm{d}x} &= b L_0 x^{b-1}, \\
+    \frac{\mathrm{d}u_e}{\mathrm{d}x} &= c u_{e0} x^{c-1}.
+\end{align}
+代入后系数项的指数要求为：
+\begin{align}
+    2b + a - 1 &= 0, \\
+    a + 2b - 1 &= 0, \\
+    ab + 2c - 1 - a &= 0.
+\end{align}
+由前两式解得：
+\begin{align}
+    a &= 1 - 2b, \\
+    c &= 1 - 2b,
+\end{align}
+但$b$尚未确定，因此方程组未封闭。
+
+\section{对数法补充分析}
+利用幂律结构对 $U, L, u_e$ 的关系取对数：
+\begin{align}
+    \ln U &\sim (1 - 2b) \ln x, \quad 
+    \ln L \sim b \ln x, \\
+    \Rightarrow U &\sim L^{\frac{1}{b} - 2}, \quad 
+    u_e \sim L^{\frac{1}{b} - 2}.
+\end{align}
+
+代入系数条件表达式，得：
+\begin{align}
+    \frac{L^{\frac{1}{b}-1}}{\nu} \frac{\mathrm{d}L}{\mathrm{d}x} &= C_2, \\
+    \frac{u_e^{\frac{b}{1-2b}}}{\nu} \frac{\mathrm{d}u_e}{\mathrm{d}x} &= C_3,
+\end{align}
+化简后：
+\begin{align}
+    \frac{b}{\nu} \frac{\mathrm{d}}{\mathrm{d}x} L^{1/b} &= C_2, \\
+    \frac{1-2b}{\nu(1-b)} \frac{\mathrm{d}}{\mathrm{d}x} u_e^{\frac{1-b}{1-2b}} &= C_3.
+\end{align}
+为避免奇点，需有 $b \ne 0, b \ne 1, b \ne \frac{1}{2}$。
+
+\section{守恒量引导的内禀尺度与自相似结构}
+
+\subsection{守恒量的推导}
+
+考虑壁射流区域的动量方程为：
+\begin{align}
+    \frac{\partial uu}{\partial x} + \frac{\partial uv}{\partial y} = \nu\frac{\partial^{2} u}{\partial y^{2}} = \frac{1}{\rho}\frac{\partial\tau}{\partial y}
+\end{align}
+边界条件为：
+\begin{align}
+    y=0,\ x>0&:\quad \psi = u = v = 0\\
+    y\rightarrow \infty,\ x>0&:\quad \tau = u = 0
+\end{align}
+
+对动量方程从 $y$ 到 $\infty$ 积分，得到：
+\begin{align}
+    \int_{y}^{\infty} \rho\left(\frac{\partial uu}{\partial x} + \frac{\partial uv}{\partial y}\right)\mathrm{d}y = \int_{y}^{\infty} \frac{\partial\tau}{\partial y}\mathrm{d}y
+\end{align}
+化简得：
+\begin{align}
+    \frac{\partial}{\partial x} \rho\int_{y}^{\infty} uu\,\mathrm{d}y - \rho uv = -\tau
+\end{align}
+
+定义动量扩散势函数 $W$：
+\begin{align}
+    W = \rho \int_{y}^{\infty} uu\,\mathrm{d}y, \quad \text{则有} \quad \frac{\partial W}{\partial y} = -\rho uu
+\end{align}
+代入前式，得到：
+\begin{align}
+    \frac{\partial W}{\partial x} - \rho uv + \tau = 0
+\end{align}
+两边乘以 $u$，得到：
+\begin{align}
+    u\frac{\partial W}{\partial x} + v\frac{\partial W}{\partial y} + u\tau = 0
+\end{align}
+这表示 $W$ 满足如下形式的对流输运方程：
+\begin{align}
+    \frac{\mathrm{D}W}{\mathrm{D}t} + u\tau = 0
+    \label{eq-dFdt}
+\end{align}
+
+进一步，将连续方程 $\partial u/\partial x + \partial v/\partial y = 0$ 两边乘以 $W$ 并与上述方程相加，得：
+\begin{align}
+    \frac{\partial uW}{\partial x} + \frac{\partial vW}{\partial y} + u\tau = 0
+\end{align}
+
+对该式在 $y$ 方向从 $0$ 到 $\infty$ 积分，得到：
+\begin{align}
+    \int_{0}^{\infty} \frac{\partial uW}{\partial x} \mathrm{d}y + \int_{0}^{\infty} \frac{\partial vW}{\partial y} \mathrm{d}y + \int_{0}^{\infty} u\tau\, \mathrm{d}y = 0
+\end{align}
+注意到
+\begin{align}
+    \int_{0}^{\infty} \frac{\partial vW}{\partial y} \mathrm{d}y = vW\big|_{0}^{\infty} = 0,
+\end{align}
+根据边界条件 $u = \tau = 0$ 在 $y\to\infty$，而 $v = 0$ 在 $y=0$。
+
+因此最终得：
+\begin{align}
+    \frac{\mathrm{d}}{\mathrm{d}x} \int_{0}^{\infty} uW\, \mathrm{d}y = 0
+\end{align}
+即如下量保持恒定：
+\begin{align}
+    F = \int_{0}^{\infty} uW\, \mathrm{d}y = \rho \int_{0}^{\infty} u \left(\int_{y}^{\infty} uu\,\mathrm{d}y'\right) \mathrm{d}y = \text{常数}
+\end{align}
+
+这表明，在壁射流问题中，$F$ 是一个特有的守恒量，其物理意义是沿壁面方向的动量扩散势通量守恒。
+
+\subsection{壁射流问题中的内禀尺度}
+
+一般的黏性流动问题具有两个基本守恒量：密度 $\rho$ 和黏性系数 $\mu$ 或运动黏度 $\nu = \mu/\rho$。壁射流由于其自相似性与动量输运结构，在上一节推导中额外具有一个动量扩散势守恒量 $F$，其量纲为：
+\begin{align}
+    [F] &= \frac{\mathrm{M}\cdot \mathrm{L}^{2}}{\mathrm{T}^{3}} \\
+    [\rho] &= \frac{\mathrm{M}}{\mathrm{L}^{3}}, \quad [\mu] = \frac{\mathrm{M}}{\mathrm{L}\cdot \mathrm{T}}
+\end{align}
+
+利用 $\nu = \mu/\rho$，并构造量纲一致性关系，可得三基本量纲的表达为：
+\begin{align}
+    \mathrm{M} &= \frac{\rho^{4} \nu^{9}}{F^{3}} \\
+    \mathrm{L} &= \frac{\rho \nu^{3}}{F} \\
+    \mathrm{T} &= \frac{\rho^{2} \nu^{5}}{F^{2}}
+\end{align}
+
+由此可构建内禀特征尺度：
+\begin{align}
+    [U] &= \frac{\mathrm{L}}{\mathrm{T}} = \frac{F}{\rho \nu^{2}}, \quad
+    [L] = \frac{\rho \nu^{3}}{F}
+\end{align}
+
+这意味着壁射流的特征速度与长度分别为：
+\begin{align}
+    U &= \frac{F}{\rho \nu^{2}} \\
+    L &= \frac{\rho \nu^{3}}{F}
+\end{align}
+
+进一步验证两者构成的无量纲数：
+\begin{align}
+    \frac{UL}{\nu} = \frac{F}{\rho \nu^{2}} \cdot \frac{\rho \nu^{3}}{F} = 1
+\end{align}
+
+这说明该特征速度与长度构成的无量纲群是固定常数，反映了壁射流特有的自相似结构。相应的变量可以写作：
+\begin{align}
+    u(x,y) &= U \cdot f(\eta), \quad \eta = \frac{y}{L}
+\end{align}
+其中函数 $f(\eta)$ 需通过自相似动量方程进一步求解（详见上一章节自相似解构造过程）。
+
+
+
+\section{小结与后续方向}
+目前的分析显示，满足相似性要求需满足一组幂律结构，虽然不能唯一确定 $b$，但其关系满足一定一致性。进一步可以通过引入物理守恒量（如积分不变量）来封闭系统，进而确定幂指数 $b$ 的具体值。
+
+\subsection*{待补充内容}
+\begin{itemize}
+    \item 推导壁射流问题中的积分不变量（如 $F = \rho \int_0^\infty u(y)\left( \int_y^\infty u(y') \, dy' \right) dy$）；
+    \item 由守恒量导出 $U(x)$ 与 $L(x)$ 之间的约束，进一步求解 $b$；
+    \item 将完整的动量方程转化为仅含 $\eta$ 的 ODE 并数值求解。
+\end{itemize}

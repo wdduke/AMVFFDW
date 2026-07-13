@@ -1,0 +1,257 @@
+\section{贴附通风撞击区分离、会合点坐标推导过程}
+
+
+\subsection{研究背景与问题动机}
+
+在具有拐角几何边界的区域中，流体流动通常伴随着分离、再附着与回流结构。为了在无黏势流模型中揭示这些特征，可以将点涡诱导的扰动与背景均匀流叠加，构造复势函数来描述局部流场结构。
+
+本报告旨在通过共形映射将拐角区域映射到标准域（如上半平面），并通过点涡平衡条件构造静止流场，再求解驻点位置，得到流体从壁面分离与汇合的关键位置。
+
+
+\subsection{共形映射：拐角到上半平面}
+
+为了简化边界条件，将物理域中存在夹角为 $\theta = c\pi$ 的拐角映射到标准上半平面，采用幂映射：
+
+\begin{align}
+    \xi = z^c
+\end{align}
+
+其中 $z$ 为物理平面坐标，$\xi$ 为辅助平面坐标，$c = \theta/\pi$ 控制映射强度。
+
+在该变换下，拐角两边的壁面映射为 $\xi$ 平面的实轴，整个拐角区域变为上半平面。
+
+
+
+\subsection{复势构造：点涡与均匀流叠加}
+
+在辅助平面 $\xi$ 中考虑一个强度为 $\Gamma$ 的点涡与其镜像，叠加一个强度为 $S$ 的均匀流，复势函数为：
+
+\begin{align}
+    W^*(\xi) = \frac{\Gamma}{2\pi i} \left[ \ln(\xi - \xi_0) - \ln(\xi - \bar{\xi}_0) \right] - S \xi
+\end{align}
+
+将其拉回物理平面，记 $\xi = z^c$，则复势为：
+
+\begin{align}
+    W(z) = \frac{\Gamma}{2\pi i} \left[ \ln(z^c - z_0^c) - \ln(z^c - \bar{z}_0^c) \right] - S z^c
+\end{align}
+
+其中 $z_0$ 是点涡在物理平面的位置。
+
+
+\subsection{点涡平衡条件与坐标确定}
+
+为构造准静态流场结构，需要使点涡在背景流中静止，即诱导速度为零：
+
+\begin{align}
+    \left.\frac{dW^*}{d\xi}\right|_{\xi = \xi_0} = 0
+\end{align}
+
+计算导数得：
+
+\begin{align}
+    \frac{dW^*}{d\xi} = \frac{\Gamma}{2\pi i} \left[ \frac{1}{\xi - \xi_0} - \frac{1}{\xi - \bar{\xi}_0} \right] - S
+\end{align}
+此时复速度在$\xi_{0}$为发散的奇点，需要对复速度进行展开分析，以剔除点涡自身的自感应贡献，仅保留边界及其他复势结构诱导的有限速度。
+代入 $\xi = \xi_0$ 并化简，得点涡应处于：
+
+\begin{align}
+    \xi_0 = \frac{i\Gamma}{4\pi S}
+\quad \Rightarrow \quad 
+z_0 = \left( \frac{i\Gamma}{4\pi S} \right)^{1/c}
+\end{align}
+
+这是点涡保持静止所需的位置。
+
+
+\subsection{复速度驻点的求解}
+
+复速度为：
+\begin{align}
+    \frac{dW}{dz} = \frac{dW}{d\xi} \cdot \frac{d\xi}{dz}
+= \left[ \frac{\Gamma}{2\pi i} \left( \frac{1}{\xi - \xi_0} - \frac{1}{\xi - \bar{\xi}_0} \right) - S \right] \cdot c z^{c-1}
+\end{align}
+
+令其为零可得驻点条件：
+\begin{align}
+    \frac{1}{\xi - \xi_0} - \frac{1}{\xi - \bar{\xi}_0} = \frac{2\pi i S}{\Gamma}
+\end{align}
+
+等价于：
+\begin{align}
+    (\xi - \xi_0)(\xi - \bar{\xi}_0) = \frac{\Gamma}{\pi S} \Im(\xi_0)
+\end{align}
+
+代入 $\xi_0 = \frac{i\Gamma}{4\pi S}$ 得：
+\begin{align}
+    (\xi - \xi_0)(\xi - \bar{\xi}_0) = \frac{\Gamma^2}{4\pi^2 S^2}
+\end{align}
+
+解得两个驻点 $\xi_{1,2} \in \mathbb{R}$，再反映射回物理平面：
+\begin{align}
+    z_{1,2} = \xi_{1,2}^{1/c}
+\end{align}
+
+这两个点即为流体在拐角壁面上分离与汇合的驻点位置。
+
+
+\subsection{参数影响与数值示例（可选）}
+
+% 这里可根据具体情况插入图形、数值结果、驻点轨迹随参数变化图等
+
+\begin{itemize}
+    \item 角度参数 $c$ 对驻点位置的影响；
+    \item $\Gamma/S$ 比值对流动结构的调控作用；
+    \item 流线图、速度矢量图示例；
+\end{itemize}
+
+
+\subsection{结论与展望（可选）}
+
+% 简要回顾构造过程，并提出可能的推广方向
+
+\begin{itemize}
+    \item 本文通过共形映射与势流构造方法，成功获得了拐角区域中含点涡结构的驻点位置；
+    \item 可推广至多个点涡、空心涡、时间演化问题等；
+    \item 可结合数值模拟进一步验证驻点与分离再附着的关联性。
+\end{itemize}
+
+\section{贴附通风撞击区分离、会合点坐标推导过程}
+
+\subsection{研究背景与问题动机}
+
+在具有拐角几何边界的区域中，流体流动通常伴随着分离、再附着与回流结构。为了在无黏势流模型中揭示这些特征，可以将点涡诱导的扰动与背景均匀流叠加，构造复势函数来描述局部流场结构。
+
+本报告旨在通过共形映射将拐角区域映射到标准域（如上半平面），并通过点涡平衡条件构造静止流场，再求解驻点位置，得到流体从壁面分离与汇合的关键位置。
+
+\subsection{共形映射：拐角到上半平面}
+
+为了简化边界条件，将物理域中存在夹角为 $\theta$ 的拐角映射到标准上半平面，采用幂映射：
+\begin{align}
+    \xi = z^c
+\end{align}
+其中 $z$ 为物理平面坐标，$\xi$ 为辅助平面坐标。参数 $c = \pi/\theta$ 控制映射强度。在该变换下，拐角两边的壁面映射为 $\xi$ 平面的实轴，整个拐角区域变为上半平面。
+
+\subsection{复势构造：点涡与均匀流叠加}
+
+在辅助平面 $\xi$ 中考虑一个强度为 $\Gamma$ 的点涡与其镜像，叠加一个强度为 $S$ 的均匀流(驻点流stagnation flow)，复势函数为：
+\begin{align}
+    W^*(\xi) = \frac{\Gamma}{2\pi i} \left[ \ln(\xi - \xi_0) - \ln(\xi - \bar{\xi}_0) \right] - S \xi
+\end{align}
+将其拉回物理平面，记 $\xi = z^c$ 和 $\xi_0 = z_0^c$，则复势为：
+\begin{align}
+    W(z) = \frac{\Gamma}{2\pi i} \left[ \ln(z^c - z_0^c) - \ln(z^c - \bar{z}_0^c) \right] - S z^c
+\end{align}
+其中 $z_0$ 是点涡在物理平面的位置。对应的复速度为：
+\begin{align}
+    \frac{\mathrm{d}W}{\mathrm{d}z}=\frac{\Gamma}{2\pi i}cz^{c-1}\left(\frac{1}{z^{c}-z_{0}^{c}}-\frac{1}{z^{c}-\bar{z}_{0}^{c}}\right)-Scz^{c-1}
+\end{align}
+
+% ----- 以下是您补充的详细奇异性分析 -----
+\subsection{点涡平衡条件与坐标确定}
+
+当关注点 $z = z_0$ 处的速度时，复速度中的第一项显然具有奇性。为求得点涡所受的净诱导速度，需对其展开分析，以剔除点涡自身的自感应贡献，仅保留由边界或其他结构诱导的有限速度。
+
+\subsubsection{奇异性分析}
+
+定义函数 $g(z) = \frac{cz^{c-1}}{z^{c}-z_{0}^{c}}$，考察其在 $z = z_0$ 邻域内的展开。设 $z = z_0 + \epsilon$，其中 $\epsilon \to 0$，根据复幂函数的泰勒展开，有：
+\begin{align*}
+    z^{c} = (z_{0}+\epsilon)^{c} = z_{0}^{c} + cz_{0}^{c-1}\epsilon + \frac{c(c-1)}{2}z_{0}^{c-2}\epsilon^{2} + \mathcal{O}(\epsilon^3)
+\end{align*}
+代入 $g(z)$ 的分子和分母：
+\begin{align*}
+    g(z) &= \frac{c\left[z_{0}^{c-1}+(c-1)z_{0}^{c-2}\epsilon+\cdots\right]}{cz_{0}^{c-1}\epsilon+\frac{c(c-1)}{2}z_{0}^{c-2}\epsilon^{2}+\cdots} \\
+    &= \frac{1+\frac{c-1}{z_{0}}\epsilon+\cdots}{\epsilon\left(1+\frac{c-1}{2z_{0}}\epsilon+\cdots\right)}
+\end{align*}
+利用几何级数展开公式 $\frac{1}{1+x} \approx 1 - x$ 并保留到一阶项，得：
+\begin{align*}
+    g(z) &= \frac{1}{\epsilon} \left(1 + \frac{c-1}{z_{0}}\epsilon + \cdots \right) \left(1 - \frac{c-1}{2z_{0}}\epsilon + \cdots \right) \\
+    &= \frac{1}{\epsilon} \left(1 + \frac{c-1}{z_0}\epsilon - \frac{c-1}{2z_0}\epsilon + \cdots \right) \\
+    &= \frac{1}{\epsilon} + \frac{c-1}{2z_{0}} + \mathcal{O}(\epsilon)
+\end{align*}
+其中第一项 $1/\epsilon$ 为点涡自身的自感应速度（奇性项），而第二项 $\frac{c-1}{2z_0}$ 则是由于几何变换及边界条件所引入的有限诱导速度（劳斯修正项），应予以保留。
+
+因此，点涡 $z_0$ 受到的净诱导速度（即物理速度场在 $z_0$ 处的有限部分）为：
+\begin{align}
+    \left. \frac{\mathrm{d}W}{\mathrm{d}z} \right|_{\text{finite at } z_0} = \frac{\Gamma}{2\pi i} \left( \frac{c-1}{2z_0} - \frac{cz_0^{c-1}}{z_0^{c} - \bar{z}_0^{c}} \right) - Scz_0^{c-1}
+\end{align}
+
+\subsubsection{静止条件与位置解}
+
+点涡在流场中保持静止，意味着其所受的净诱导速度为零。因此，我们得到点涡静止的必要条件：
+\begin{align}
+    \boxed{
+    \frac{\Gamma}{2\pi i} \left[ \frac{c-1}{2z_0} - \frac{c z_0^{c-1}}{z_0^c - \bar{z}_0^c} \right] - S c z_0^{c-1} = 0
+    }
+\end{align}
+这是一个关于复数变量 $z_0$ 的非线性方程。在一个重要的对称情形下，该方程可以显式求解。
+
+\paragraph{特例：对称结构下的解析解}
+
+设点涡位于拐角的角平分线上。在此条件下， $z_0^c$ 为纯虚数，故有：
+\[
+\boxed{ \bar{z}_0^c = -z_0^c }
+\]
+将此对称条件代入静止条件方程：
+\begin{align*}
+    \frac{\Gamma}{2\pi i} \left[ \frac{c-1}{2z_0} - \frac{c z_0^{c-1}}{z_0^c - (-z_0^c)} \right] &= S c z_0^{c-1} \\
+    \frac{\Gamma}{2\pi i} \left[ \frac{c-1}{2z_0} - \frac{c z_0^{c-1}}{2z_0^c} \right] &= S c z_0^{c-1} \\
+    \frac{\Gamma}{2\pi i} \left( \frac{c-1-c}{2z_0} \right) &= S c z_0^{c-1} \\
+    \frac{\Gamma}{2\pi i} \frac{-1}{2z_0} &= S c z_0^{c-1} \\
+    \frac{-\Gamma}{4\pi i} &= S c z_0^c
+\end{align*}
+整理得 $z_0^c = \frac{-\Gamma}{4\pi i S c} = \frac{i\Gamma}{4\pi S c}$。于是，点涡平衡位置的解析表达式为：
+\begin{align}
+    \boxed{
+    z_0 = \left( \frac{i\Gamma}{4\pi S c} \right)^{1/c}
+    }
+\end{align}
+该表达式给出了点涡在拐角几何中处于平衡位置所需满足的条件。
+
+% ----- 以下是根据修正后的平衡条件，重新推导的驻点求解过程 -----
+\subsection{复速度与壁面驻点求解（已修正）}
+
+壁面上的驻点（滞止点）是流体分离与再附着的关键位置。驻点满足 $\frac{\mathrm{d}W}{\mathrm{d}z} = 0$。
+\begin{align*}
+    \left[ \frac{\Gamma}{2\pi i} \left( \frac{1}{\xi - \xi_0} - \frac{1}{\xi - \bar{\xi}_0} \right) - S \right] \cdot c z^{c-1} = 0
+\end{align*}
+对于壁面上的非原点驻点，$z\neq 0$，故条件简化为：
+\begin{align}
+    \frac{\Gamma}{2\pi i} \left( \frac{1}{\xi - \xi_0} - \frac{1}{\xi - \bar{\xi}_0} \right) = S
+\end{align}
+壁面在 $\xi$ 平面中对应实轴，我们寻找实数解 $\xi \in \mathbb{R}$。代入平衡解 $\xi_0 = z_0^c = i y_c$，其中 $y_c = \frac{\Gamma}{4\pi S c}$，则 $\bar{\xi}_0 = -iy_c$。
+\begin{align*}
+    \frac{\Gamma}{2\pi i} \left( \frac{1}{\xi - iy_c} - \frac{1}{\xi + iy_c} \right) &= S \\
+    \frac{\Gamma}{2\pi i} \frac{2iy_c}{\xi^2 + y_c^2} &= S \quad \Rightarrow \quad \frac{\Gamma y_c}{\pi(\xi^2 + y_c^2)} = S
+\end{align*}
+整理得 $\xi^2 = \frac{\Gamma y_c}{\pi S} - y_c^2 = y_c \left(\frac{\Gamma}{\pi S} - y_c\right)$。代入 $y_c$ 的表达式：
+\begin{align*}
+    \frac{\Gamma}{\pi S} = \frac{\Gamma}{\pi S} \cdot \frac{4c}{4c} = \frac{4c \Gamma}{4\pi S c} = 4c \cdot y_c
+\end{align*}
+于是，$\xi^2 = y_c (4c \cdot y_c - y_c) = y_c^2(4c-1)$。
+两个驻点在 $\xi$ 平面的坐标为：
+\begin{align}
+    \xi_{1,2} = \pm y_c \sqrt{4c-1} = \pm \frac{\Gamma}{4\pi S c}\sqrt{4c-1}
+\end{align}
+要使驻点存在（即 $\xi$ 为实数），必须有 $4c-1 \geq 0$，即 $c \geq 1/4$（对应 $\theta \leq 4\pi$）。
+
+最后，将这两个驻点反映射回物理平面 $z$：
+\begin{align}
+    z_{1,2} = (\xi_{1,2})^{1/c} = \left( \pm \frac{\Gamma\sqrt{4c-1}}{4\pi S c} \right)^{1/c}
+\end{align}
+
+\subsection{参数影响与数值示例（可选）}
+\begin{itemize}
+    \item 角度参数 $c=\pi/\theta$ 对驻点位置的影响；
+    \item $\Gamma/S$ 比值对流动结构的调控作用；
+    \item 流线图、速度矢量图示例；
+\end{itemize}
+
+\subsection{结论与展望（可选）}
+\begin{itemize}
+    \item 本文通过共形映射与势流构造方法，在对点涡速度奇性进行严格分析后，成功获得了拐角区域中含点涡结构的平衡位置与壁面驻点位置的解析表达式；
+    \item 可推广至多个点涡、空心涡、时间演化问题等；
+    \item 可结合数值模拟进一步验证驻点与分离再附着的关联性。
+\end{itemize}
+
+

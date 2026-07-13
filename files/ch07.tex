@@ -1,0 +1,191 @@
+\section{弯折拐角壁面相似解建模}
+讨论二维流场两个互相垂直壁面的边界层相似解的求取问题。
+
+方便起见，在这个问题中建立两个坐标系，第一个坐标系$xy$坐标系描述竖直方向壁面的流动情况，第二个坐标系$x'y'$，描述水平方向壁面的流动情况。两个坐标系坐标之间的关系为$x=x',y=H-y'$。
+
+对两个坐标系分别建立二维稳态黏性层流NS方程。
+
+\subsection{坐标系关系说明}
+\begin{itemize}
+    \item 水平壁面坐标系$(x,y)$:
+    \begin{itemize}
+        \item $x$：水平坐标，平行于地面；
+        \item $y$：竖直坐标，沿着竖直壁面向上；
+    \end{itemize}
+    \item 竖直壁面坐标系$(x',y')$:
+    \begin{itemize}
+        \item $x'$：水平坐标，与x相同；
+        \item $y'$：竖直坐标，沿着竖直壁面向下；
+    \end{itemize}
+\end{itemize}
+它们之间的关系为：
+\begin{align*}
+    x=x',y=H-y'
+\end{align*}
+$H$为竖壁长度以及两个坐标原点竖向的距离。
+微分变换为：
+\begin{align*}
+    \frac{\partial}{\partial x}=\frac{\partial }{\partial x'},\frac{\partial}{\partial y}=-\frac{\partial}{\partial y'}
+\end{align*}
+
+\subsection{在两个坐标系下建立二维稳态不可压黏性层流NS方程}
+$(x,y)$坐标系下，设速度分量分别为$u(x,y),v(x,y)$，分别为$x,y$方向的分速度。
+\begin{align}
+    \frac{\partial u}{\partial x}+\frac{\partial v}{\partial y}&=0\\
+    u\frac{\partial u}{\partial x}+v\frac{\partial u}{\partial y}&=-\frac{1}{\rho}\frac{\partial p}{\partial x}+\nu\left(\frac{\partial^{2} u}{\partial x^{2}}+\frac{\partial^{2} u}{\partial y^{2}}\right)\\
+    u\frac{\partial v}{\partial x}+v\frac{\partial v}{\partial y}&=-\frac{1}{\rho}\frac{\partial p}{\partial y}+\nu\left(\frac{\partial^{2} v}{\partial x^{2}}+\frac{\partial^{2} v}{\partial y^{2}}\right)
+\end{align}
+
+同理，$(x',y')$坐标系下，设速度分量分别为$u'(x',y'),v'(x',y')$，分别为$x',y'$方向的分速度。
+
+根据第一节的坐标关系，有如下变换：
+\begin{align*}
+    u'(x',y')&=u(x,y),&v'(x',y')=-v(x,y)\\
+    \frac{\partial u}{\partial x}&=\frac{\partial u'}{\partial x'}, &\frac{\partial u}{\partial y}=-\frac{\partial u'}{\partial y'}\\
+    \frac{\partial v}{\partial x}&=-\frac{\partial v'}{\partial x'}, &\frac{\partial v}{\partial y}=\frac{\partial v'}{\partial y'}\\
+    \frac{\partial^{2} u}{\partial x^{2}}&=\frac{\partial^{2} u'}{\partial x'^{2}}, &\frac{\partial^{2} u}{\partial y^{2}}=\frac{\partial^{2} u'}{\partial y'^{2}}\\
+    \frac{\partial^{2} v}{\partial x^{2}}&=\frac{\partial^{2} (-v')}{\partial x'^{2}}, & \frac{\partial^{2} v}{\partial y^{2}}=-\frac{\partial^{2} v'}{\partial y'^{2}}\\
+    \frac{\partial p}{\partial x}&=\frac{\partial p'}{\partial x'}, &\frac{\partial p}{\partial y}=-\frac{\partial p'}{\partial y'}
+\end{align*}
+
+代入$(x,y)$坐标系下的NS方程即得到$(x',y')$坐标系下的NS方程
+\begin{align}
+    \frac{\partial u'}{\partial x'}+\frac{\partial v'}{\partial y'}&=0\\
+    u'\frac{\partial u'}{\partial x'}+v'\frac{\partial u'}{\partial y'}&=-\frac{1}{\rho}\frac{\partial p'}{\partial x'}+\nu\left(\frac{\partial^{2} u'}{\partial x'^{2}}+\frac{\partial^{2} u'}{\partial y'^{2}}\right)\\
+    u'\frac{\partial v'}{\partial x'}+v'\frac{\partial v'}{\partial y'}&=-\frac{1}{\rho}\frac{\partial p'}{\partial y'}+\nu\left(\frac{\partial^{2} v'}{\partial x'^{2}}+\frac{\partial^{2} v'}{\partial y'^{2}}\right)
+\end{align}
+与$(x,y)$坐标系下的形式完全一样，形式保持不变。
+
+\subsection{对竖直壁面的流动简化到壁射流边界层方程}
+为了方便起见，都使用$x,y$作为坐标符号。
+
+引入流函数，则连续方程自动满足，动量方程表示为：
+\begin{align}
+    \frac{\partial \psi}{\partial y}\frac{\partial^{2} \psi}{\partial x\partial y}-\frac{\partial \psi}{\partial x}\frac{\partial^{2} \psi}{\partial y^{2}}&=-\frac{1}{\rho}\frac{\partial p}{\partial x}+\nu(\frac{\partial^{3} \psi}{\partial x^{2}\partial y}+\frac{\partial^{3} \psi}{\partial y^{3}})\\
+    \frac{\partial \psi}{\partial y}\frac{\partial^{2} \psi}{\partial x^{2}}-\frac{\partial \psi}{\partial x}\frac{\partial^{2} \psi}{\partial x\partial y}&=\frac{1}{\rho}\frac{\partial p}{\partial y}+\nu(\frac{\partial^{3} \psi}{\partial x^{3}}+\frac{\partial^{3} \psi}{\partial x\partial y^{2}})
+\end{align}
+
+$x,y$分别表示壁面法向与壁面切向，简化后，$y$方向动量方程为：
+\begin{align}
+    \frac{\partial \psi}{\partial y}\frac{\partial^{2} \psi}{\partial x^{2}}-\frac{\partial \psi}{\partial x}\frac{\partial^{2} \psi}{\partial x\partial y}&=\frac{1}{\rho}\frac{\partial p}{\partial y}+\nu\frac{\partial^{3} \psi}{\partial x^{3}}\\
+    0&=\frac{\partial p}{\partial x}
+\end{align}
+结论，简化后的边界层方程中，$p$是切向坐标的单值函数。
+
+设局部特征尺度为$U(y),L(y)$，定义相似解的形式为：
+\begin{align}
+    \psi=ULf(\frac{x}{L})=ULf(\xi)
+\end{align}
+
+相关变量罗列：
+\begin{align}
+    \frac{\partial \psi}{\partial x}&=Uf'\\
+    \frac{\partial \psi}{\partial y}&=f\left(\frac{\mathrm{d}U}{\mathrm{d}x}L+\frac{\mathrm{d}L}{\mathrm{d}y}U\right)-\frac{Ux}{L}\frac{\mathrm{d}L}{\mathrm{d}y}f'\\
+    \frac{\partial^{2} \psi}{\partial x^{2}}&=\frac{U}{L}f''\\
+  \frac{\partial^{3} \psi}{\partial x^{3}}&=\frac{U}{L^{2}}f'''\\
+      \frac{\partial^{2} \psi}{\partial x\partial y}&=f'\frac{\mathrm{d}U}{\mathrm{d}y}-\frac{Ux}{L^{2}}\frac{\mathrm{d}L}{\mathrm{d}y}f'  
+\end{align}
+
+代入并化简合并得到ODE为：
+\begin{align}
+    f'''-ff''\left(\frac{L^{2}}{\nu}\frac{\mathrm{d}U}{\mathrm{d}y}+\frac{UL}{\nu}\frac{\mathrm{d}L}{\mathrm{d}y}\right)+f'f'\frac{L^{2}}{\nu}\frac{\mathrm{d}U}{\mathrm{d}y}+\frac{L^{2}}{U\mu}\frac{\partial p}{\partial y}=0
+\end{align}
+若要使相似解存在，则需要满足以下条件(自相似解存在的充分条件):
+\begin{align}
+    \frac{UL}{\nu}\frac{\mathrm{d}L}{\mathrm{d}y}=\alpha\\
+    \frac{L^{2}}{\nu}\frac{\mathrm{d}U}{\mathrm{d}y}=\beta\\
+    \frac{L^{2}}{U\mu}\frac{\mathrm{d} p}{\mathrm{d} y}=\gamma
+\end{align}
+其中，$\alpha,\beta,\gamma$为常数。
+
+则原ODE变为
+\begin{align}
+    \label{eq-ODE}
+    f'''-(\beta+\alpha)ff''+\beta f'f'+\gamma=0
+\end{align}
+
+将条件方程组中（2）（3）时相除得到：
+\begin{align}
+    p(U)=\frac{\gamma \rho}{2\beta}U^{2}+p_{0}
+\end{align}
+
+上式表示，在黏性主导流动中，为保持自相似结构所要求的压强-速度协调条件，数学形式类比于 Bernoulli 方程。
+
+\subsubsection{幂律假设}
+若假设局部特征尺度有以下形式：
+\begin{align}
+    L(y)=Ay^{m},U(y)=By^{n}
+\end{align}
+
+代入条件方程组得到：
+\begin{align}
+    L(y)&=Ay^{\frac{\alpha}{\beta+2\alpha}}\\
+    U(y)&=\frac{\nu(\beta+2\alpha)}{A^{2}}y^{\frac{\beta}{\beta+2\alpha}}\\
+    p(y)&=\gamma\frac{\nu(\beta+2\alpha)}{A^{4}}y^{\frac{\beta-2\alpha}{\beta+2\alpha}}
+\end{align}
+
+整理后得到：
+\begin{align}
+    p=\gamma \frac{U}{L^{2}}
+\end{align}
+
+\subsubsection{指数律假设}
+若假设局部尺度特征有以下形式：
+\begin{align}
+    L(y)=Ae^{my},U(y)=Be^{ny}
+\end{align}
+
+代入条件方程组得：
+\begin{align}
+    L(y)&=Ae^{\frac{\alpha n}{\beta}y}\\
+    U(y)&=Be^{\frac{-2\alpha n}{\beta}y}\\
+    p(y)&=\frac{\gamma \mu B}{2nA^{2}}e^{2ny}+p_{0}
+\end{align}
+
+\subsection{自由射流（有压力梯度）}
+现在分析有压力梯度影响的自由射流问题的守恒量形式。
+
+边界层控制方程：
+\begin{align}
+    \frac{\partial u}{\partial x}+\frac{\partial v}{\partial y}&=0\\
+    \rho\left(u\frac{\partial u}{\partial x}+v\frac{\partial u}{\partial y}\right)&=-\frac{\partial p}{\partial x}+\mu\frac{\partial^{2} u}{\partial y^{2}}
+\end{align}
+边界条件
+\begin{align}
+    y&=0, 0<x<H: u=0,v=0,\psi=0\\
+    y&=\pm\infty,0<x<H: u=0, \frac{\partial u}{\partial y}=0
+\end{align}
+对连续方程变形处理后代入NS方程：
+\begin{align}
+    \rho u \frac{\partial u}{\partial x}+\rho u\frac{\partial v}{\partial y}&=0\\
+    \rho\left(\frac{\partial uu}{\partial x}+\frac{\partial uv}{\partial y}\right)&=-\frac{\partial p}{\partial x}+\mu\frac{\partial \tau}{\partial y}
+\end{align}
+
+对变形后动量方程沿射流截面从$-\infty$到$\infty$积分：
+\begin{align}
+    \rho\left(\int_{-\infty}^{\infty}\frac{\partial uu}{\partial x}\mathrm{d}y+\int_{-\infty}^{\infty}\frac{\partial uv}{\partial y}\mathrm{d}y\right)&=-\int_{-\infty}^{\infty}\frac{\partial p}{\partial x}\mathrm{d}y+\int_{-\infty}^{\infty}\mu\frac{\partial \tau}{\partial y}\mathrm{d}y
+\end{align}
+其中等式左右两边的第二项可以根据边界条件得出均为0，则简化后的方程为
+\begin{align}
+    \rho\frac{\mathrm{d}}{\mathrm{d}x}\int_{-\infty}^{\infty}(uu+p)\mathrm{d}y=0\\
+    \rho\int_{-\infty}^{\infty}(uu+p)\mathrm{d}y=\cst=J^{*}
+\end{align}
+若忽略x方向上的压力变换，则压力梯度项为零，上式退化为：
+\begin{align}
+     \rho\int_{-\infty}^{\infty}uu\mathrm{d}y=\cst=J
+\end{align}
+此为无压力梯度自由射流动量通量守恒表达式。
+
+\subsection{自相似解代入守恒量}
+
+自相似变量表示为：
+\begin{align}
+    u(x,y)&=U(x)f'(\eta)\\
+    \eta&=\frac{y}{L(x)}\\
+    \mathrm{d}y&=L(x)\mathrm{d}\eta
+\end{align}
+代入守恒量定义式
+\begin{align}
+    \rho\int_{-\infty}^{\infty}(U^{2}f'^{2}+p)L\mathrm{d}\eta=\cst\\
+    \rho U^{2}L\int_{-\infty}^{\infty}f'^{2}\mathrm{d}\eta+\rho L\int_{-\infty}^{\infty}p\mathrm{d}\eta=\cst
+\end{align}
